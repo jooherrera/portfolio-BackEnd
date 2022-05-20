@@ -1,8 +1,10 @@
 package com.joseherrera.Backend.interfaces;
 
+import com.joseherrera.Backend.exception.LoginException;
+
 public interface IEncrypt {
 
     String encryptPassword(String password);
 
-    boolean verifyPassword(String password, String hashPassword);
+    void verifyPassword(String password, String hashPassword) throws LoginException;
 }

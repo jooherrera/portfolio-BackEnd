@@ -1,7 +1,6 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.dto.LoginRequestDto;
-import com.joseherrera.Backend.exception.EmailExistsException;
 import com.joseherrera.Backend.exception.LoginException;
 import com.joseherrera.Backend.interfaces.IAuthService;
 import com.joseherrera.Backend.model.AuthModel;
@@ -20,43 +19,49 @@ public class AuthService implements IAuthService {
     @Autowired
     private Encrypt encrypter;
 
+
     @Override
-    public void createNewAuth(AuthModel newAuth) throws EmailExistsException{
-        String email = newAuth.getEmail();
-        String password = newAuth.getPassword();
+    public void changePassword(int id, String newPassword) {
         
-        if (authRepo.existsByEmail(email)) {
-            throw new EmailExistsException("El email ya esta registrado.");
-        }
-               
-        newAuth.setPassword(encrypter.encryptPassword(password));
-
-        authRepo.save(newAuth);
+       AuthModel found = authRepo.findById(id).orElse(null);
+       
+        System.out.println(newPassword);
+       
+       found.setPassword(encrypter.encryptPassword(newPassword));
+       
+       authRepo.save(found);
     }
+    
+    
 
     @Override
-    public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException{
-        String email = loginRequest.getEmail();
-        String password = loginRequest.getPassword();
+    public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException {
 
-        AuthModel authFound = authRepo.findByEmail(email).orElse(null);
+        try {
+            String email = loginRequest.getEmail();
+            String password = loginRequest.getPassword();
+            
+            AuthModel authFound = authRepo.findByEmail(email).orElse(null);
+            
+            if (Objects.isNull(authFound)) {
+                throw new LoginException("Email o contraseña incorrecto");
+            }
 
-        if (Objects.isNull(authFound)) {
-           throw new LoginException("Email o contraseña incorrecto");
+            if (password.equals(authFound.getPassword())) {
+                return authFound;
+            }
+
+            encrypter.verifyPassword(password, authFound.getPassword());
+
+            return authFound;
+        } catch (IllegalArgumentException e) {
+            throw new LoginException("Email o contraseña incorrecto");
+
+        } catch (LoginException e) {
+            throw new LoginException(e.getMessage());
         }
 
-        boolean isAuth = encrypter.verifyPassword(password, authFound.getPassword());
-
-        if (!isAuth) {
-             throw new LoginException("Email o contraseña incorrecto");
-        }
-
-        return authFound;
     }
 
-    @Override
-    public Boolean isValidAuthentication(String authHeaderValue) {
-        return false;
-    }
 
 }
