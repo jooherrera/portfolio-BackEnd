@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import com.joseherrera.Backend.interfaces.IJwToken;
+import io.jsonwebtoken.impl.crypto.DefaultSignatureValidatorFactory;
+import java.util.Objects;
 
 @Getter
 public class JwToken implements IJwToken {
@@ -46,18 +48,26 @@ public class JwToken implements IJwToken {
     @Override
     public Token getTokenPayload(String headerToken) throws WrongTokenException {
         try {
+
+            if (Objects.isNull(headerToken)) {
+                throw new WrongTokenException("Header sin token");
+            }
+            
             String[] authHeaderSplit = headerToken.split(" ");
             String token = authHeaderSplit[1];
 
             claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 
             int pk = Integer.parseInt(claims.get("id").toString());
-        
-            return new Token(pk);
+            int dni = Integer.parseInt(claims.get("dni").toString());
+
+            return new Token(pk, dni);
 
         } catch (MalformedJwtException e) {
             throw new WrongTokenException("Token inválido");
         }
     }
+
+   
 
 }

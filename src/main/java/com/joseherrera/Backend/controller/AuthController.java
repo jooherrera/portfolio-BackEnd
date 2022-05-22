@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.joseherrera.Backend.interfaces.IJwToken;
+import com.joseherrera.Backend.interfaces.IPersonService;
+import com.joseherrera.Backend.model.PersonModel;
 import com.joseherrera.Backend.utils.Token;
 
 @RestController
@@ -36,6 +38,9 @@ public class AuthController {
     IAuthService authService;
 
     @Autowired
+    IPersonService personService;
+
+    @Autowired
     Response response;
 
     @PostMapping("/login")
@@ -46,6 +51,10 @@ public class AuthController {
 
             jwToken.addClaim("id", found.getId());
             jwToken.addClaim("email", found.getEmail());
+
+            PersonModel personFound = personService.getPerson(found.getId());
+
+            jwToken.addClaim("dni", personFound.getDni());
 
             String token = jwToken.generateToken();
 
@@ -59,35 +68,27 @@ public class AuthController {
 
     @PostMapping("/reset-password")
     public ResponseEntity<Object> resetPassword(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody ChangePasswordRequestDto request) {
-        IJwToken jwToken = new JwToken(secret);
-        
+
         try {
-            if (Objects.isNull(authHeader)) {
-                return new ResponseEntity<>(response.error("Header sin token"), HttpStatus.UNAUTHORIZED);
-            }
+            IJwToken jwToken = new JwToken(secret);
 
             Token token = jwToken.getTokenPayload(authHeader);
-            
+
             authService.changePassword(token.getPrimaryKey(), request.getNewPassword());
-            
-             return new ResponseEntity<>(response.success("Contraseña actualizada"), HttpStatus.ACCEPTED);
-            
-            
+
+            return new ResponseEntity<>(response.success("Contraseña actualizada"), HttpStatus.ACCEPTED);
+
         } catch (WrongTokenException e) {
-            return new ResponseEntity<>(response.error("No se actualizo la contraseña"), HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(response.error("Error en el token"), HttpStatus.NOT_MODIFIED);
         }
-        
+
     }
 
-    
     @GetMapping("/dash")
     public ResponseEntity<Object> dash(@RequestHeader(value = "Authorization", required = false) String authHeader) {
-        IJwToken jwToken = new JwToken(secret);
-
         try {
-            if (Objects.isNull(authHeader)) {
-                return new ResponseEntity<>(response.error("Header sin token"), HttpStatus.UNAUTHORIZED);
-            }
+
+            IJwToken jwToken = new JwToken(secret);
 
             Token token = jwToken.getTokenPayload(authHeader);
 
