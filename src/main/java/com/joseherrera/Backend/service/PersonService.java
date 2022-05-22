@@ -12,14 +12,15 @@ public class PersonService implements IPersonService {
 
     @Autowired
     PersonRepository personRepo;
-    
-    
-    
+
     @Override
     public PersonModel getPerson(int authId) {
         return personRepo.findByAuthId(authId).orElse(null);
-
     }
 
-    
+    @Override
+    public void updatePerson(PersonModel person) {
+        personRepo.save(person);
+    }
+
 }

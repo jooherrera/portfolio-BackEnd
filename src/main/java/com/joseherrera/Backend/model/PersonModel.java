@@ -27,10 +27,9 @@ public class PersonModel implements Serializable {
     @Lob
     private String bannerImg;
     private int authId;
+
     public PersonModel() {
     }
-    
-    
 
     public PersonModel(int dni, String name, String lastName, String title, String profileImg, String bannerImg, int authId) {
         this.dni = dni;
@@ -47,6 +46,27 @@ public class PersonModel implements Serializable {
         return "PersonModel{" + "dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", title=" + title + ", profileImg=" + profileImg + ", bannerImg=" + bannerImg + ", authId=" + authId + '}';
     }
 
-    
-    
+    public void updateAttribute(String key, Object value) {
+
+        switch (key) {
+            case "name":
+                this.name = value.toString();
+                break;
+            case "lastName":
+                this.lastName = value.toString();
+                break;
+            case "title":
+                this.title = value.toString();
+                break;
+            case "profileImg":
+                this.profileImg = value.toString();
+                break;
+            case "bannerImg":
+                this.bannerImg = value.toString();
+                break;
+            default:
+                throw new AssertionError("No existe esa key en el modelo");
+        }
+    }
+
 }

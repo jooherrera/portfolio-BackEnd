@@ -32,10 +32,8 @@ public class Controller {
 
     @GetMapping("/profile")
     public ResponseEntity<Object> getProfile(@RequestParam int id) {
-        System.out.println(id);
         PersonModel person = personService.getPerson(id);
-        //return new ResponseEntity<>(response.successWithObject("Info", person), HttpStatus.ACCEPTED);
-        return null;
+        return new ResponseEntity<>(response.successWithObject("Info", person), HttpStatus.ACCEPTED);
     }
 
 }
