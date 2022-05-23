@@ -1,9 +1,7 @@
 package com.joseherrera.Backend.controller;
 
-import com.joseherrera.Backend.interfaces.IPersonService;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
-import com.joseherrera.Backend.service.PersonService;
 import com.joseherrera.Backend.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
