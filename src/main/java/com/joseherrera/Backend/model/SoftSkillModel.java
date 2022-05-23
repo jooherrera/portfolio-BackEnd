@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Hard_Skill")
+@Table(name = "Soft_Skill")
 public class SoftSkillModel implements Serializable, IModel {
 
     @Id

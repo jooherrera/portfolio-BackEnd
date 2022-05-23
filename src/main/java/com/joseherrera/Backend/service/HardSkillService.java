@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 public class HardSkillService implements IService<HardSkillModel> {
 
     @Autowired
-    HardSkillRepository contactRepo;
+    HardSkillRepository hardSkillRepo;
 
     @Override
     public HardSkillModel get(int dni) {
-        return contactRepo.findByPersonDni(dni);
+        return hardSkillRepo.findByPersonDni(dni);
     }
 
     @Override
-    public void update(HardSkillModel contact) {
-        contactRepo.save(contact);
+    public void update(HardSkillModel model) {
+        hardSkillRepo.save(model);
     }
 }
