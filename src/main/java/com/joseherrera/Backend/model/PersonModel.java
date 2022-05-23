@@ -1,5 +1,6 @@
 package com.joseherrera.Backend.model;
 
+import com.joseherrera.Backend.interfaces.IModel;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Person")
-public class PersonModel implements Serializable {
+public class PersonModel implements Serializable, IModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +47,7 @@ public class PersonModel implements Serializable {
         return "PersonModel{" + "dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", title=" + title + ", profileImg=" + profileImg + ", bannerImg=" + bannerImg + ", authId=" + authId + '}';
     }
 
+    @Override
     public void updateAttribute(String key, Object value) {
 
         switch (key) {

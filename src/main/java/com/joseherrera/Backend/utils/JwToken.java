@@ -50,7 +50,7 @@ public class JwToken implements IJwToken {
         try {
 
             if (Objects.isNull(headerToken)) {
-                throw new WrongTokenException("Header sin token");
+                throw new WrongTokenException("No se encontro el Header con el token");
             }
             
             String[] authHeaderSplit = headerToken.split(" ");

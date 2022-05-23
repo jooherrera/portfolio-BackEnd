@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IPersonService;
+import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
 import com.joseherrera.Backend.utils.Token;
 
@@ -38,7 +39,7 @@ public class AuthController {
     IAuthService authService;
 
     @Autowired
-    IPersonService personService;
+    IService<PersonModel> personService;
 
     @Autowired
     Response response;
@@ -52,7 +53,7 @@ public class AuthController {
             jwToken.addClaim("id", found.getId());
             jwToken.addClaim("email", found.getEmail());
 
-            PersonModel personFound = personService.getPerson(found.getId());
+            PersonModel personFound = personService.get(found.getId());
 
             jwToken.addClaim("dni", personFound.getDni());
 

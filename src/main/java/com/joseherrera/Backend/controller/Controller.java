@@ -1,6 +1,7 @@
 package com.joseherrera.Backend.controller;
 
 import com.joseherrera.Backend.interfaces.IPersonService;
+import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
 import com.joseherrera.Backend.service.PersonService;
 import com.joseherrera.Backend.utils.Response;
@@ -19,7 +20,7 @@ public class Controller {
     private String envName;
 
     @Autowired
-    PersonService personService;
+    IService<PersonModel> personService;
 
     @Autowired
     Response response;
@@ -32,7 +33,7 @@ public class Controller {
 
     @GetMapping("/profile")
     public ResponseEntity<Object> getProfile(@RequestParam int id) {
-        PersonModel person = personService.getPerson(id);
+        PersonModel person = personService.get(id);
         return new ResponseEntity<>(response.successWithObject("Info", person), HttpStatus.ACCEPTED);
     }
 

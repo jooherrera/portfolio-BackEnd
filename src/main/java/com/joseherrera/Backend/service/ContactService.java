@@ -1,24 +1,24 @@
 package com.joseherrera.Backend.service;
 
-import com.joseherrera.Backend.interfaces.IContactService;
+import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.ContactModel;
 import com.joseherrera.Backend.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContactService  implements IContactService{
+public class ContactService  implements IService<ContactModel>{
 
     @Autowired
     ContactRepository contactRepo;
     
     @Override
-    public ContactModel getContact(int dni) {
-        return contactRepo.findByPersonDni(dni).orElse(null);
+    public ContactModel get(int dni) {
+        return contactRepo.findByPersonDni(dni);
     }
 
     @Override
-    public void updateContact(ContactModel contact) {
+    public void update(ContactModel contact) {
         contactRepo.save(contact);
     }
 }
