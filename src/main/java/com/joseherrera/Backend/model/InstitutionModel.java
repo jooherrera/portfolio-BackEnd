@@ -14,58 +14,54 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Job")
-public class JobModel implements Serializable, IModel {
+@Table(name = "Institution")
+public class InstitutionModel implements Serializable, IModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String date = "date";
+    private String extra = "";
+    private String title = "title";
     @Lob
     private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
     private String name = "name";
-    private String company = "company name";
-    private String date = "date";
-    private int experienceId;
+    private int studyId;
 
-    public JobModel() {
+    public InstitutionModel() {
     }
 
-    public JobModel(int id, String logo, String name, String company, String date, String extra, int experienceId) {
+    public InstitutionModel(int id, String date, String extra, String title, String logo, String name, int studyId) {
         this.id = id;
+        this.date = date;
+        this.extra = extra;
+        this.title = title;
         this.logo = logo;
         this.name = name;
-        this.company = company;
-        this.date = date;
-        this.experienceId = experienceId;
+        this.studyId = studyId;
     }
 
-    @Override
-    public String toString() {
-        return "JobModel{" + "id=" + id + ", logo=" + logo + ", name=" + name + ", company=" + company + ", date=" + date + ", experienceId=" + experienceId + '}';
-    }
-
-  
-    
     @Override
     public void updateAttribute(String key, Object value) {
         switch (key) {
+            case "date":
+                this.date = value.toString();
+                break;
+            case "extra":
+                this.extra = value.toString();
+                break;
+            case "title":
+                this.title = value.toString();
+                break;
             case "logo":
                 this.logo = value.toString();
                 break;
             case "name":
                 this.name = value.toString();
                 break;
-            case "company":
-                this.company = value.toString();
-                break;
-            case "date":
-                this.date = value.toString();
-                break;
             default:
                 throw new AssertionError("No existe esa key en el modelo");
         }
     }
 
-    
-    
 }

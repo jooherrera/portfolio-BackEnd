@@ -4,6 +4,7 @@ import java.util.List;
 
 
 public interface IService<T> {
+
     public T getByPrincipalKey(int id);
     public void update(T model);
     public T getOneByForeignKeyId(int fkId);

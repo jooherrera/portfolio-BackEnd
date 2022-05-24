@@ -21,21 +21,23 @@ public class ProjectModel implements Serializable, IModel {
     private int id;
     private String name = "Project name";
     private String description = "Description";
-    private String github = "Github Link";
-    private String link = "Web link";
+    private String githubLink = "Github Link";
+    private String webLink = "Web link";
     private int personalProjectId;
 
     public ProjectModel() {
     }
 
-    public ProjectModel(int id, String name, String description, String github, String link, int personalProjectId) {
+    public ProjectModel(int id,String name, String description, String githubLink,String webLink, int personalProjectId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.github = github;
-        this.link = link;
+        this.githubLink = githubLink;
+        this.webLink = webLink;
         this.personalProjectId = personalProjectId;
     }
+
+    
 
     @Override
     public void updateAttribute(String key, Object value) {
@@ -46,11 +48,11 @@ public class ProjectModel implements Serializable, IModel {
             case "description":
                 this.description = value.toString();
                 break;
-            case "github":
-                this.github = value.toString();
+            case "githubLink":
+               this.githubLink = value.toString();
                 break;
-            case "link":
-                this.link = value.toString();
+            case "webLink":
+                this.webLink = value.toString();
                 break;
             default:
                 throw new AssertionError("No existe esa key en el modelo");
