@@ -92,9 +92,28 @@ public class RestControllerBase<T extends IModel> {
         }
 
     }
+    
+    
+     @PostMapping("/")
+    public ResponseEntity<Object> add(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Integer> field) {
+        try {
+            IJwToken jwToken = new JwToken(secret);
+            Token token = jwToken.getTokenPayload(authHeader);
+
+            controllerService.add(field.get("referenceId"));
+
+            return new ResponseEntity<>(response.success("Agregado con exito"), HttpStatus.CREATED);
+
+        } catch (WrongTokenException e) {
+            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
+        }
+
+    }
+    
+    
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
+    public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try{
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);

@@ -25,7 +25,8 @@ public class JobService implements IService<JobModel> {
 
     @Override
     public JobModel getOneByForeignKeyId(int fkId) {
-        return jobRepo.findById(fkId).orElse(null);
+        //return jobRepo.findById(fkId).orElse(null);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
