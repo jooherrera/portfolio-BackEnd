@@ -39,7 +39,16 @@ public class RestControllerBase<T extends IModel> {
     @Autowired
     Response response;
 
-
+    /*
+      @GetMapping("/all/{id}")
+    public ResponseEntity<Object> getAll(@PathVariable int id) {
+        List<T> model = controllerService.getAllByForeignKeyId(id);
+        return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
+    }
+     */
+    
+    
+    
     @GetMapping("/{id}")
     public ResponseEntity<Object> get(@PathVariable int id) {
         T model = controllerService.getByPrincipalKey(id);
@@ -73,7 +82,7 @@ public class RestControllerBase<T extends IModel> {
 
     //Usa el ID del registro
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id)  throws Exception{
+    public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);
@@ -96,7 +105,7 @@ public class RestControllerBase<T extends IModel> {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
         } catch (SignatureException e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        }catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
