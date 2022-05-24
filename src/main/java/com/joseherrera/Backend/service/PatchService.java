@@ -18,6 +18,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class PatchService<T extends IModel> {
 
+    /*
+    
+    
     @Value("${jwt.secret.key}")
     String secret;
 
@@ -25,13 +28,13 @@ public class PatchService<T extends IModel> {
     Response response;
     
 
-    public ResponseEntity<Object> start(String authHeader, Map<String, Object> field, IService<T> service, boolean isPersonModel ) {
+    public ResponseEntity<Object> start(String authHeader, Map<String, Object> field, IService<T> service ) {
         try {
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);
-            int id = isPersonModel ? token.getPrimaryKey() : token.getPersonPK();
+            //int id = isPersonModel ? token.getPrimaryKey() : token.getPersonPK();
             
-            T storedModel = service.get(id);
+            T storedModel = service.getByPrincipalKey(1);
             
             for(String key : field.keySet()){
                 storedModel.updateAttribute(key, field.get(key));
@@ -47,4 +50,6 @@ public class PatchService<T extends IModel> {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
+    */
+    
 }

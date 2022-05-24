@@ -9,7 +9,6 @@ import com.joseherrera.Backend.interfaces.IAuthService;
 import com.joseherrera.Backend.model.AuthModel;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.joseherrera.Backend.interfaces.IJwToken;
-import com.joseherrera.Backend.interfaces.IPersonService;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
 import com.joseherrera.Backend.utils.Token;
@@ -53,7 +51,7 @@ public class AuthController {
             jwToken.addClaim("id", found.getId());
             jwToken.addClaim("email", found.getEmail());
 
-            PersonModel personFound = personService.get(found.getId());
+            PersonModel personFound = personService.getOneByForeignKeyId(found.getId());
 
             jwToken.addClaim("dni", personFound.getDni());
 

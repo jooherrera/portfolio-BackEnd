@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/person")
 public class PersonController extends RestControllerBase<PersonModel> {
 
-    @Override
+   /*
+     @Override
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field) {
         try {
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);
 
-            PersonModel storedModel = controllerService.get(token.getPrimaryKey());
+            PersonModel storedModel = controllerService.getOneByForeignKeyId(token.getPrimaryKey());
 
             for (String key : field.keySet()) {
                 storedModel.updateAttribute(key, field.get(key));
@@ -41,5 +42,6 @@ public class PersonController extends RestControllerBase<PersonModel> {
         }
       
     }
+    */
 
 }

@@ -1,6 +1,10 @@
 
 package com.joseherrera.Backend.interfaces;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface IQuerys<T>{
-     T findByPersonDni(int dni);
+     Optional<T> findByPersonDni(int dni);
 }
+

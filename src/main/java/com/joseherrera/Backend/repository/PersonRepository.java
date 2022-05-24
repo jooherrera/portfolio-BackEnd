@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends JpaRepository<PersonModel, Integer> {
 
     Optional<PersonModel> findByAuthId(int id);
+    Optional<PersonModel> findByDni(int dni);
 
     //@Transactional
     @Modifying
