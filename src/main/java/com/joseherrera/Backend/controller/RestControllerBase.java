@@ -102,7 +102,7 @@ public class RestControllerBase<T extends IModel> {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
+        } 
 
     }
 
@@ -118,6 +118,8 @@ public class RestControllerBase<T extends IModel> {
 
         } catch (WrongTokenException e) {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
+        }catch(UnsupportedOperationException e){
+            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }
