@@ -1,3 +1,4 @@
+
 package com.joseherrera.Backend.model;
 
 import com.joseherrera.Backend.interfaces.IModel;
@@ -13,38 +14,40 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "About")
-public class AboutModel implements Serializable, IModel {
-
+@Table(name = "Skill")
+public class SkillModel implements Serializable, IModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String sectionTitle;
-    private String about;
-    private int personDni;
+    private String name; 
+    private int porcent;
+    private int softSkillId;
 
-    public AboutModel() {
+    public SkillModel() {
     }
 
-    public AboutModel(int id, String sectionTitle, String about, int personDni) {
+    public SkillModel(int id, String name, int porcent, int softSkillId) {
         this.id = id;
-        this.sectionTitle = sectionTitle;
-        this.about = about;
-        this.personDni = personDni;
+        this.name = name;
+        this.porcent = porcent;
+        this.softSkillId = softSkillId;
     }
 
     @Override
     public void updateAttribute(String key, Object value) {
-        switch (key) {
-            case "sectionTitle":
-                this.sectionTitle = value.toString();
+         switch (key) {
+            case "name":
+                this.name = value.toString();
                 break;
-            case "about":
-                this.about = value.toString();
+            case "porcent":
+                this.porcent = Integer.parseInt(value.toString());
                 break;
             default:
                 throw new AssertionError("No existe esa key en el modelo");
         }
     }
-
+    
+    
+    
+    
 }

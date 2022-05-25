@@ -2,7 +2,6 @@ package com.joseherrera.Backend.model;
 
 import com.joseherrera.Backend.interfaces.IModel;
 import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,7 +46,6 @@ public class PersonModel implements Serializable, IModel {
     public String toString() {
         return "PersonModel{" + "dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", title=" + title + ", profileImg=" + profileImg + ", bannerImg=" + bannerImg + ", authId=" + authId + '}';
     }
-    
 
     @Override
     public void updateAttribute(String key, Object value) {

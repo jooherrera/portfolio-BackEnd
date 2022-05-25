@@ -1,10 +1,12 @@
-
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.interfaces.IQuerys;
 import com.joseherrera.Backend.model.AboutModel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AboutRepository extends JpaRepository<AboutModel, Integer>, IQuerys<AboutModel> {}    
+public interface AboutRepository extends BaseRepository<AboutModel> {
+
+    Optional<AboutModel> findByPersonDni(int dni);
+
+}

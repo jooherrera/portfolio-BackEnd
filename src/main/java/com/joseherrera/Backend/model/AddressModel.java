@@ -1,4 +1,3 @@
-
 package com.joseherrera.Backend.model;
 
 import com.joseherrera.Backend.interfaces.IModel;
@@ -16,8 +15,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "Address")
 public class AddressModel implements Serializable, IModel {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String address;
     private int personDni;
@@ -41,6 +41,5 @@ public class AddressModel implements Serializable, IModel {
                 throw new AssertionError();
         }
     }
-    
-    
+
 }

@@ -4,12 +4,10 @@ import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IModel;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.service.PatchService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
 import io.jsonwebtoken.SignatureException;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 
 public class RestControllerBase<T extends IModel> {
 
@@ -34,8 +31,6 @@ public class RestControllerBase<T extends IModel> {
     @Autowired
     IService<T> controllerService;
 
-    // @Autowired
-    // PatchService<T> patchService;
     @Autowired
     Response response;
 
@@ -46,15 +41,13 @@ public class RestControllerBase<T extends IModel> {
         return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
     }
      */
-    
-    
-    
     @GetMapping("/{id}")
     public ResponseEntity<Object> get(@PathVariable int id) {
         T model = controllerService.getByPrincipalKey(id);
         return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
     }
 
+    /*
     //Utiliza el dni para actualizar las tablas.
     @PatchMapping("/")
     public ResponseEntity<Object> updateSection(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field) {
@@ -79,6 +72,8 @@ public class RestControllerBase<T extends IModel> {
         }
 
     }
+
+     */
 
     //Usa el ID del registro
     @PatchMapping("/{id}")

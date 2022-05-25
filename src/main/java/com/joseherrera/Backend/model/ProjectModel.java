@@ -28,7 +28,7 @@ public class ProjectModel implements Serializable, IModel {
     public ProjectModel() {
     }
 
-    public ProjectModel(int id,String name, String description, String githubLink,String webLink, int personalProjectId) {
+    public ProjectModel(int id, String name, String description, String githubLink, String webLink, int personalProjectId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -36,8 +36,6 @@ public class ProjectModel implements Serializable, IModel {
         this.webLink = webLink;
         this.personalProjectId = personalProjectId;
     }
-
-    
 
     @Override
     public void updateAttribute(String key, Object value) {
@@ -49,7 +47,7 @@ public class ProjectModel implements Serializable, IModel {
                 this.description = value.toString();
                 break;
             case "githubLink":
-               this.githubLink = value.toString();
+                this.githubLink = value.toString();
                 break;
             case "webLink":
                 this.webLink = value.toString();

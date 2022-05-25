@@ -37,7 +37,7 @@ public class TechnologyModel implements Serializable, IModel {
 
     @Override
     public void updateAttribute(String key, Object value) {
-       switch (key) {
+        switch (key) {
             case "logo":
                 this.logo = value.toString();
                 break;
@@ -48,9 +48,5 @@ public class TechnologyModel implements Serializable, IModel {
                 throw new AssertionError("No existe esa key en el modelo");
         }
     }
-
-
-    
-    
 
 }

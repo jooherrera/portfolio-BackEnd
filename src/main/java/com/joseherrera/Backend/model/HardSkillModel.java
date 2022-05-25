@@ -42,6 +42,4 @@ public class HardSkillModel implements Serializable, IModel {
         }
     }
 
-    
-    
 }

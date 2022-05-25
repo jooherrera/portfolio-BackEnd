@@ -11,6 +11,7 @@ public class BaseService<T extends IModel, K extends BaseRepository<T>> implemen
     @Autowired
     K repo;
 
+
     @Override
     public T getByPrincipalKey(int id) {
         return repo.findById(id).orElse(null);

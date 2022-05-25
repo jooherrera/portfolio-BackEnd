@@ -44,8 +44,6 @@ public class JobModel implements Serializable, IModel {
         return "JobModel{" + "id=" + id + ", logo=" + logo + ", name=" + name + ", company=" + company + ", date=" + date + ", experienceId=" + experienceId + '}';
     }
 
-  
-    
     @Override
     public void updateAttribute(String key, Object value) {
         switch (key) {
@@ -66,6 +64,4 @@ public class JobModel implements Serializable, IModel {
         }
     }
 
-    
-    
 }

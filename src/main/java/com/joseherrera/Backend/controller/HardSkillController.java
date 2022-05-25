@@ -9,6 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/hard-skill")
 public class HardSkillController extends RestControllerBase<HardSkillModel> {
-   
     
 }

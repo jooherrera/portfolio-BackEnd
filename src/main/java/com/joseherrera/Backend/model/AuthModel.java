@@ -1,4 +1,3 @@
-
 package com.joseherrera.Backend.model;
 
 import java.io.Serializable;
@@ -10,11 +9,12 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @Entity
-@Table(name="Auth")
-public class AuthModel implements Serializable{
-    
+@Table(name = "Auth")
+public class AuthModel implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,6 +34,5 @@ public class AuthModel implements Serializable{
     public String toString() {
         return "AuthModel{" + "id=" + id + ", email=" + email + ", password=" + password + '}';
     }
-    
-    
+
 }

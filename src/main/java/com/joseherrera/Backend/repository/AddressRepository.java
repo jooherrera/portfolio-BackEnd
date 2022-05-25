@@ -1,12 +1,11 @@
-
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.interfaces.IQuerys;
 import com.joseherrera.Backend.model.AddressModel;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
-public interface AddressRepository extends JpaRepository<AddressModel, Integer>, IQuerys<AddressModel> {
-    
+public interface AddressRepository extends BaseRepository<AddressModel> {
+
+    Optional<AddressModel> findByPersonDni(int dni);
 }

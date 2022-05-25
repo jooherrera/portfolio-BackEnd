@@ -42,6 +42,4 @@ public class PersonalProjectModel implements Serializable, IModel {
         }
     }
 
-    
-    
 }

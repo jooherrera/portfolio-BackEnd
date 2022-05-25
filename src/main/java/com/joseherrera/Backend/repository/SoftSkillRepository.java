@@ -1,10 +1,12 @@
-
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.interfaces.IQuerys;
 import com.joseherrera.Backend.model.SoftSkillModel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SoftSkillRepository extends JpaRepository<SoftSkillModel, Integer>, IQuerys<SoftSkillModel> {}
+public interface SoftSkillRepository extends BaseRepository<SoftSkillModel> {
+
+    Optional<SoftSkillModel> findByPersonDni(int dni);
+
+}
