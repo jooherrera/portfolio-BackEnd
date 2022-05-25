@@ -6,7 +6,7 @@ public interface IResponse {
 
     public Map<String, String> success(String msg);
 
-    public Map<String, String> successWithToken(String msg, String token);
+    public Map<String, Object> successWithToken(String msg, String token);
 
     public Map<String, Object> successWithObject(String msg, Object payload);
 

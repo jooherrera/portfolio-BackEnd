@@ -11,22 +11,23 @@ public class Response implements IResponse {
     @Override
     public Map<String, String> success(String msg) {
         Map<String, String> json = new HashMap<>();
-        json.put("Success", msg);
+        json.put("success", msg);
         return json;
     }
 
     @Override
     public Map<String, String> error(String msg) {
         Map<String, String> json = new HashMap<>();
-        json.put("Error", msg);
+        json.put("error", msg);
         return json;
     }
 
     @Override
-    public Map<String, String> successWithToken(String msg, String token) {
-        Map<String, String> json = new HashMap<>();
-        json.put("Success", msg);
-        json.put("Token", token);
+    public Map<String, Object> successWithToken(String msg, String token) {
+        Map<String, Object> json = new HashMap<>();
+        json.put("message", msg);
+        json.put("token", token);
+        json.put("success", true);
         return json;
     }
     
@@ -34,8 +35,8 @@ public class Response implements IResponse {
     @Override
     public Map<String, Object> successWithObject(String msg, Object payload) {
         Map<String, Object> json = new HashMap<>();
-        json.put("Success", msg);
-        json.put("Payload", payload);
+        json.put("success", msg);
+        json.put("payload", payload);
         return json;
     }
     

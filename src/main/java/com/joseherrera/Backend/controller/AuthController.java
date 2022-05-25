@@ -23,6 +23,7 @@ import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
 import com.joseherrera.Backend.utils.Token;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 @RequestMapping("/auth")
@@ -42,6 +43,7 @@ public class AuthController {
     @Autowired
     Response response;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginDto) {
         IJwToken jwToken = new JwToken(secret, expTime);
