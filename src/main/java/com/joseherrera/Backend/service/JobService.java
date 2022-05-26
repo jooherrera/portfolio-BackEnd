@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobService  implements IService<JobModel> {
+public class JobService implements IService<JobModel> {
 
     @Autowired
     JobRepository repo;
@@ -26,7 +26,7 @@ public class JobService  implements IService<JobModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
                 case "logo" -> repo.updateLogo(id, field.get(key).toString());
                 case "name" -> repo.updateName(id, field.get(key).toString());
@@ -46,7 +46,5 @@ public class JobService  implements IService<JobModel> {
     public List<JobModel> getAll() {
         return repo.findAll();
     }
-
-
 
 }

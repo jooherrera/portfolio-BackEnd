@@ -34,7 +34,7 @@ public class SectionService implements IService<SectionModel> {
             switch (key) {
                 case "sectionTitle" -> repo.updateSectionTitle(id, field.get(key).toString());
                 case "visible" -> repo.updateVisible(id, Boolean.parseBoolean(field.get(key).toString()));
-                default -> throw new AssertionError();
+                default -> throw new AssertionError("No existe la key en el modelo");
             }
         }
     }

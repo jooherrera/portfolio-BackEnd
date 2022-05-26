@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/section/about")
 public class AboutController {
 
@@ -52,9 +54,13 @@ public class AboutController {
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
             }
+            
             service.update(id, field);
+            
+            AboutModel updatedModel = service.getOne();
+            
 
-            return new ResponseEntity<>(response.success("Actualizado correctamente"), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         } catch (WrongTokenException e) {

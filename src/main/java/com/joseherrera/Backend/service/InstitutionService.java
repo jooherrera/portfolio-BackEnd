@@ -36,6 +36,7 @@ public class InstitutionService implements IService<InstitutionModel> {
                 default -> throw new AssertionError();
             }
         }
+         ;
     }
 
     @Override

@@ -26,7 +26,7 @@ public class PersonService implements IService<PersonModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
                 case "name" -> repo.updateName(id, field.get(key).toString());
                 case "lastName" -> repo.updateLastName(id, field.get(key).toString());
@@ -47,9 +47,5 @@ public class PersonService implements IService<PersonModel> {
     public List<PersonModel> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
-    
 
 }

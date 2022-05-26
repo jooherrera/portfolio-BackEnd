@@ -26,7 +26,7 @@ public class ContactService implements IService<ContactModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-        
+
         for (String key : field.keySet()) {
             switch (key) {
                 case "email" -> repo.updateEmail(id, field.get(key).toString());
@@ -36,6 +36,7 @@ public class ContactService implements IService<ContactModel> {
                 default -> throw new AssertionError();
             }
         }
+
     }
 
     @Override
