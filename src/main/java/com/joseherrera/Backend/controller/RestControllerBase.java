@@ -2,12 +2,12 @@ package com.joseherrera.Backend.controller;
 
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
-import com.joseherrera.Backend.interfaces.IModel;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
 import io.jsonwebtoken.SignatureException;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-public class RestControllerBase<T extends IModel> {
-
-    @Value("${jwt.secret.key}")
+public class RestControllerBase{
+/*
+     @Value("${jwt.secret.key}")
     String secret;
 
     @Autowired
@@ -33,6 +34,8 @@ public class RestControllerBase<T extends IModel> {
 
     @Autowired
     Response response;
+    */
+   
 
     /*
       @GetMapping("/all/{id}")
@@ -40,12 +43,7 @@ public class RestControllerBase<T extends IModel> {
         List<T> model = controllerService.getAllByForeignKeyId(id);
         return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
     }
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> get(@PathVariable int id) {
-        T model = controllerService.getByPrincipalKey(id);
-        return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
-    }
+
 
     /*
     //Utiliza el dni para actualizar las tablas.
@@ -74,8 +72,10 @@ public class RestControllerBase<T extends IModel> {
     }
 
      */
-
     //Usa el ID del registro
+    
+    /*
+    
     @PatchMapping("/{id}")
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
@@ -102,11 +102,14 @@ public class RestControllerBase<T extends IModel> {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        } 
+        }
 
     }
-
-    @PostMapping("/")
+    
+    */
+    
+ /*
+     @PostMapping("/")
     public ResponseEntity<Object> add(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Integer> field) {
         try {
             IJwToken jwToken = new JwToken(secret);
@@ -118,12 +121,15 @@ public class RestControllerBase<T extends IModel> {
 
         } catch (WrongTokenException e) {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
-        }catch(UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e) {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }
+    */
+   
 
+    /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
@@ -143,5 +149,7 @@ public class RestControllerBase<T extends IModel> {
             return new ResponseEntity(response.error("No existe el id ingresado"), HttpStatus.BAD_REQUEST);
         }
     }
+    */
+    
 
 }

@@ -20,22 +20,13 @@ public class Controller {
     @Value("${environment.name}")
     private String envName;
 
-    @Autowired
-    IService<PersonModel> personService;
-    
-     @Autowired
-    IService<ContactModel> contactService;
-
-    @Autowired
-    Response response;
-
     @GetMapping("/")
     public String home() {
-
         return "Home API - V1 -- " + envName;
     }
 
-    @GetMapping("/profile")
+    /*
+        @GetMapping("/profile")
     public ResponseEntity<Object> getProfile(@RequestParam int id) {
         Map<String,Object> Dto = new HashMap<>();
         
@@ -48,5 +39,5 @@ public class Controller {
         
         return new ResponseEntity<>(response.successWithObject("Info", Dto), HttpStatus.ACCEPTED);
     }
-
+     */
 }

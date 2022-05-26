@@ -60,10 +60,13 @@ public class JwToken implements IJwToken {
 
             int pk = Integer.parseInt(claims.get("id").toString());
             int dni = Integer.parseInt(claims.get("dni").toString());
+            boolean isAdmin = Boolean.parseBoolean(claims.get("isAdmin").toString());
 
-            return new Token(pk, dni);
+            return new Token(pk, dni, isAdmin);
 
         } catch (MalformedJwtException e) {
+            throw new WrongTokenException("Token inválido");
+        } catch (Exception e){
             throw new WrongTokenException("Token inválido");
         }
     }

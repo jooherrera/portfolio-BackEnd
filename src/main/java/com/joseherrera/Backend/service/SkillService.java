@@ -1,22 +1,49 @@
 package com.joseherrera.Backend.service;
 
+import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.SkillModel;
 import com.joseherrera.Backend.repository.SkillRepository;
 import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SkillService extends BaseService<SkillModel, SkillRepository> {
+public class SkillService implements IService<SkillModel> {
+
+    @Autowired
+    SkillRepository repo;
 
     @Override
-    public List<SkillModel> getAllByForeignKeyId(int fkId) {
-        return repo.findBySoftSkillId(fkId).orElse(null);
+    public SkillModel getOne() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-        @Override
-    public void add(int foreignKeyId) {
-        SkillModel newModel = new SkillModel();
-        newModel.setSoftSkillId(foreignKeyId);
-        repo.save(newModel);
+    @Override
+    public SkillModel add() {
+        return repo.save(new SkillModel());
     }
+
+    @Override
+    public void update(int id, Map<String, Object> field) {
+         for (String key : field.keySet()) {
+            switch (key) {
+                case "name" -> repo.updateName(id, field.get(key).toString());
+                case "porcent" -> repo.updatePorcent(id, field.get(key).toString());
+                default -> throw new AssertionError();
+            }
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        repo.deleteById(id);
+    }
+
+    @Override
+    public List<SkillModel> getAll() {
+        return repo.findAll();
+    }
+
+
 }

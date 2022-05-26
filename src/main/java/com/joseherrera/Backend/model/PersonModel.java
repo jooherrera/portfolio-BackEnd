@@ -1,6 +1,5 @@
 package com.joseherrera.Backend.model;
 
-import com.joseherrera.Backend.interfaces.IModel;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +14,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Person")
-public class PersonModel implements Serializable, IModel {
+public class PersonModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,48 +26,17 @@ public class PersonModel implements Serializable, IModel {
     private String profileImg;
     @Lob
     private String bannerImg;
-    private int authId;
 
     public PersonModel() {
     }
 
-    public PersonModel(int dni, String name, String lastName, String title, String profileImg, String bannerImg, int authId) {
+    public PersonModel(int dni, String name, String lastName, String title, String profileImg, String bannerImg) {
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
         this.title = title;
         this.profileImg = profileImg;
         this.bannerImg = bannerImg;
-        this.authId = authId;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonModel{" + "dni=" + dni + ", name=" + name + ", lastName=" + lastName + ", title=" + title + ", profileImg=" + profileImg + ", bannerImg=" + bannerImg + ", authId=" + authId + '}';
-    }
-
-    @Override
-    public void updateAttribute(String key, Object value) {
-
-        switch (key) {
-            case "name":
-                this.name = value.toString();
-                break;
-            case "lastName":
-                this.lastName = value.toString();
-                break;
-            case "title":
-                this.title = value.toString();
-                break;
-            case "profileImg":
-                this.profileImg = value.toString();
-                break;
-            case "bannerImg":
-                this.bannerImg = value.toString();
-                break;
-            default:
-                throw new AssertionError("No existe esa key en el modelo");
-        }
     }
 
 }

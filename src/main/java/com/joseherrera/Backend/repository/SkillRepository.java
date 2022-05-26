@@ -1,12 +1,21 @@
 package com.joseherrera.Backend.repository;
 
 import com.joseherrera.Backend.model.SkillModel;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SkillRepository extends BaseRepository<SkillModel> {
+public interface SkillRepository extends JpaRepository<SkillModel, Integer> {
 
-    Optional<List<SkillModel>> findBySoftSkillId(int softSkillId);
+    @Modifying
+    @Query(value = "UPDATE Skill SET name = :value WHERE id = :id", nativeQuery = true)
+    void updateName(@Param("id") int id, @Param("value") String value);
+
+    @Modifying
+    @Query(value = "UPDATE Skill SET porcent = :value WHERE id = :id", nativeQuery = true)
+    void updatePorcent(@Param("id") int id, @Param("value") String value);
+
 }

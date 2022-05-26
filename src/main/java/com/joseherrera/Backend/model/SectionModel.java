@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,23 +12,26 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "School")
-public class SchoolModel implements Serializable {
+@Table(name = "Section")
+public class SectionModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String company = "Company";
-    @Lob
-    private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
+    private String sectionTitle;
+    private boolean visible;
 
-    public SchoolModel() {
+
+    public SectionModel() {
     }
 
-    public SchoolModel(int id, String company, String logo) {
+    public SectionModel(int id, String sectionTitle, boolean visible) {
         this.id = id;
-        this.company = company;
-        this.logo = logo;
+        this.sectionTitle = sectionTitle;
+        this.visible = visible;
     }
+
+
+   
 
 }

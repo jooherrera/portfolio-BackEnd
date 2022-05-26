@@ -1,6 +1,5 @@
 package com.joseherrera.Backend.model;
 
-import com.joseherrera.Backend.interfaces.IModel;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Subject")
-public class SubjectModel implements Serializable, IModel {
+public class SubjectModel implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,21 +34,5 @@ public class SubjectModel implements Serializable, IModel {
         this.schoolId = schoolId;
     }
 
-    @Override
-    public void updateAttribute(String key, Object value) {
-        switch (key) {
-            case "title":
-                this.title = value.toString();
-                break;
-            case "date":
-                this.date = value.toString();
-                break;
-            case "certificate":
-                this.certificate = value.toString();
-                break;
-            default:
-                throw new AssertionError("No existe esa key en el modelo");
-        }
-    }
 
 }

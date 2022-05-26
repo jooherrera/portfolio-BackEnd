@@ -33,9 +33,8 @@ public class Response implements IResponse {
     
 
     @Override
-    public Map<String, Object> successWithObject(String msg, Object payload) {
+    public Map<String, Object> successWithObject(Object payload) {
         Map<String, Object> json = new HashMap<>();
-        json.put("success", msg);
         json.put("payload", payload);
         return json;
     }

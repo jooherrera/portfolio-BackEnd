@@ -31,6 +31,7 @@ public class AuthController {
 
     @Value("${jwt.secret.key}")
     String secret;
+
     @Value("${jwt.expTime}")
     Long expTime;
 
@@ -53,9 +54,10 @@ public class AuthController {
             jwToken.addClaim("id", found.getId());
             jwToken.addClaim("email", found.getEmail());
 
-            PersonModel personFound = personService.getOneByForeignKeyId(found.getId());
+            PersonModel personFound = personService.getOne();
 
             jwToken.addClaim("dni", personFound.getDni());
+            jwToken.addClaim("isAdmin", true);
 
             String token = jwToken.generateToken();
 
@@ -93,7 +95,7 @@ public class AuthController {
 
             Token token = jwToken.getTokenPayload(authHeader);
 
-            return new ResponseEntity<>(response.successWithObject("Info", token), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(response.successWithObject(token), HttpStatus.ACCEPTED);
 
         } catch (WrongTokenException e) {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
