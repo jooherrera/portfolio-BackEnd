@@ -3,6 +3,8 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
+import com.joseherrera.Backend.model.TechnologyModel;
+import com.joseherrera.Backend.service.TechnologyService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
@@ -24,76 +26,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-public class RestControllerBase{
-/*
-     @Value("${jwt.secret.key}")
+public class CrudBase<T>{
+@Value("${jwt.secret.key}")
     String secret;
 
     @Autowired
-    IService<T> controllerService;
+    IService<T> service;
 
     @Autowired
     Response response;
-    */
-   
 
-    /*
-      @GetMapping("/all/{id}")
-    public ResponseEntity<Object> getAll(@PathVariable int id) {
-        List<T> model = controllerService.getAllByForeignKeyId(id);
-        return new ResponseEntity<>(response.successWithObject("Info", model), HttpStatus.ACCEPTED);
+    @GetMapping("/")
+    @ResponseBody
+    public List<T> get() {
+        return service.getAll();
     }
 
-
-    /*
-    //Utiliza el dni para actualizar las tablas.
-    @PatchMapping("/")
-    public ResponseEntity<Object> updateSection(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field) {
-        try {
-            IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
-
-            T storedModel = controllerService.getOneByForeignKeyId(token.getPersonPK());
-
-            for (String key : field.keySet()) {
-                storedModel.updateAttribute(key, field.get(key));
-            }
-
-            controllerService.update(storedModel);
-            return new ResponseEntity<>(response.success("Actualizado correctamente"), HttpStatus.ACCEPTED);
-        } catch (AssertionError e) {
-            return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        } catch (WrongTokenException e) {
-            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
-        } catch (SignatureException e) {
-            return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
-
+    @PostMapping("/")
+    public T add() {
+        return service.add();
     }
 
-     */
-    //Usa el ID del registro
     
-    /*
-    
-    @PatchMapping("/{id}")
+     @PatchMapping("/{id}")
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);
 
-            T storedModel = controllerService.getByPrincipalKey(id);
-
-            if (Objects.isNull(storedModel)) {
-                throw new Exception("No se encontro el item para actualizar");
+            if (!token.getIsAdmin()) {
+                throw new WrongTokenException("No estas autorizado a modificar");
             }
+            
+            service.update(id, field);
+            
+            T updatedModel = service.getOneById(id);
+            
 
-            for (String key : field.keySet()) {
-                storedModel.updateAttribute(key, field.get(key));
-            }
-
-            controllerService.update(storedModel);
-            return new ResponseEntity<>(response.success("Actualizado correctamente"), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         } catch (WrongTokenException e) {
@@ -106,37 +76,13 @@ public class RestControllerBase{
 
     }
     
-    */
-    
- /*
-     @PostMapping("/")
-    public ResponseEntity<Object> add(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Integer> field) {
-        try {
-            IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
-
-            controllerService.add(field.get("referenceId"));
-
-            return new ResponseEntity<>(response.success("Agregado con exito"), HttpStatus.CREATED);
-
-        } catch (WrongTokenException e) {
-            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
-        } catch (UnsupportedOperationException e) {
-            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
-        }
-
-    }
-    */
-   
-
-    /*
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
             IJwToken jwToken = new JwToken(secret);
             Token token = jwToken.getTokenPayload(authHeader);
 
-            controllerService.delete(id);
+            service.delete(id);
 
             return new ResponseEntity<>(response.success("Eliminado correctamente"), HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
@@ -149,7 +95,6 @@ public class RestControllerBase{
             return new ResponseEntity(response.error("No existe el id ingresado"), HttpStatus.BAD_REQUEST);
         }
     }
-    */
     
 
 }

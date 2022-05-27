@@ -34,7 +34,7 @@ public class TechnologyService implements IService<TechnologyModel> {
             switch (key) {
                 case "logo" -> repo.updateLogo(id, field.get(key).toString());
                 case "name" -> repo.updateName(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                default -> throw new AssertionError("No existe la key en el modelo");
             }
         }
     }

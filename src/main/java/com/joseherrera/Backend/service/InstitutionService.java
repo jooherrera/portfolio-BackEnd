@@ -14,9 +14,11 @@ public class InstitutionService implements IService<InstitutionModel> {
     @Autowired
     InstitutionRepository repo;
 
+    @Override
     public InstitutionModel getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
+    
 
     @Override
     public InstitutionModel getOne() {

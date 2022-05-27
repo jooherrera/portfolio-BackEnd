@@ -14,6 +14,7 @@ public class JobService implements IService<JobModel> {
     @Autowired
     JobRepository repo;
     
+    @Override
     public JobModel getOneById(int id){
         return repo.findById(id).orElse(null);
     }

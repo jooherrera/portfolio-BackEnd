@@ -8,6 +8,7 @@ import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
 import io.jsonwebtoken.SignatureException;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,11 +54,10 @@ public class AboutController {
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
             }
-            
+
             service.update(id, field);
-            
+
             AboutModel updatedModel = service.getOne();
-            
 
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {

@@ -15,6 +15,11 @@ public class AboutService implements IService<AboutModel> {
     AboutRepository repo;
 
     @Override
+    public AboutModel getOneById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
     public AboutModel getOne() {
         return repo.findAll().get(0);
     }

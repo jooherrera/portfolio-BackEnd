@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SchoolService  implements IService<SchoolModel> {
+public class SchoolService implements IService<SchoolModel> {
 
     @Autowired
     SchoolRepository repo;
+
+    @Override
+    public SchoolModel getOneById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     @Override
     public SchoolModel getOne() {
@@ -26,11 +31,14 @@ public class SchoolService  implements IService<SchoolModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
-                case "company" -> repo.updateCompany(id, field.get(key).toString());
-                case "logo" -> repo.updateLogo(id, field.get(key).toString());    
-                default -> throw new AssertionError();
+                case "company" ->
+                    repo.updateCompany(id, field.get(key).toString());
+                case "logo" ->
+                    repo.updateLogo(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError("No existe la key en el modelo");
             }
         }
     }
@@ -44,6 +52,5 @@ public class SchoolService  implements IService<SchoolModel> {
     public List<SchoolModel> getAll() {
         return repo.findAll();
     }
-
 
 }

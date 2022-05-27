@@ -15,6 +15,11 @@ public class PersonService implements IService<PersonModel> {
     PersonRepository repo;
 
     @Override
+    public PersonModel getOneById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
     public PersonModel getOne() {
         return repo.findAll().get(0);
     }

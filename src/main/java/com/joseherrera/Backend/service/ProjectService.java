@@ -15,6 +15,11 @@ public class ProjectService implements IService<ProjectModel> {
     ProjectRepository repo;
 
     @Override
+    public ProjectModel getOneById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
     public ProjectModel getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -26,13 +31,18 @@ public class ProjectService implements IService<ProjectModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
-                case "name" -> repo.updateName(id, field.get(key).toString());
-                case "description" -> repo.updateDescription(id, field.get(key).toString());
-                case "webLink" -> repo.updateWebLink(id, field.get(key).toString());
-                case "githubLink" -> repo.updateGithubLink(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                case "name" ->
+                    repo.updateName(id, field.get(key).toString());
+                case "description" ->
+                    repo.updateDescription(id, field.get(key).toString());
+                case "webLink" ->
+                    repo.updateWebLink(id, field.get(key).toString());
+                case "githubLink" ->
+                    repo.updateGithubLink(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError();
             }
         }
     }
@@ -46,7 +56,5 @@ public class ProjectService implements IService<ProjectModel> {
     public List<ProjectModel> getAll() {
         return repo.findAll();
     }
-
-   
 
 }

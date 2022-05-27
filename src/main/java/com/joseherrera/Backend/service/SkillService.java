@@ -15,6 +15,11 @@ public class SkillService implements IService<SkillModel> {
     SkillRepository repo;
 
     @Override
+    public SkillModel getOneById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    @Override
     public SkillModel getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -26,11 +31,14 @@ public class SkillService implements IService<SkillModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
-                case "name" -> repo.updateName(id, field.get(key).toString());
-                case "porcent" -> repo.updatePorcent(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                case "name" ->
+                    repo.updateName(id, field.get(key).toString());
+                case "porcent" ->
+                    repo.updatePorcent(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError("No existe la key en el modelo");
             }
         }
     }
@@ -44,6 +52,5 @@ public class SkillService implements IService<SkillModel> {
     public List<SkillModel> getAll() {
         return repo.findAll();
     }
-
 
 }

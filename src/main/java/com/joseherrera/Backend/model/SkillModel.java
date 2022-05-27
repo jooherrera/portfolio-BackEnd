@@ -18,8 +18,8 @@ public class SkillModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    private int porcent;
+    private String name = "New skill";
+    private int porcent = 0;
 
     public SkillModel() {
     }
@@ -29,5 +29,4 @@ public class SkillModel implements Serializable {
         this.name = name;
         this.porcent = porcent;
     }
-
 }

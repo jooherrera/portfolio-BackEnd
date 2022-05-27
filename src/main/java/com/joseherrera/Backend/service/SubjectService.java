@@ -15,6 +15,11 @@ public class SubjectService implements IService<SubjectModel> {
     SubjectRepository repo;
 
     @Override
+    public SubjectModel getOneById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
     public SubjectModel getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -26,12 +31,16 @@ public class SubjectService implements IService<SubjectModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
-                case "title" -> repo.updateTitle(id, field.get(key).toString());
-                case "date" -> repo.updateDate(id, field.get(key).toString());
-                case "certificate" -> repo.updateCertificate(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                case "title" ->
+                    repo.updateTitle(id, field.get(key).toString());
+                case "date" ->
+                    repo.updateDate(id, field.get(key).toString());
+                case "certificate" ->
+                    repo.updateCertificate(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError("No existe la key en el modelo");
             }
         }
     }
@@ -45,10 +54,9 @@ public class SubjectService implements IService<SubjectModel> {
     public List<SubjectModel> getAll() {
         return repo.findAll();
     }
-    
-    public List<SubjectModel> getAllBySchoolId(int schoolId){
+
+    public List<SubjectModel> getAllBySchoolId(int schoolId) {
         return repo.findBySchoolId(schoolId);
     }
 
-    
 }

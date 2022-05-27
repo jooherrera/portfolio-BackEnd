@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface IService<T> {
+    
+    public T getOneById(int id);
 
     public T getOne();
     
