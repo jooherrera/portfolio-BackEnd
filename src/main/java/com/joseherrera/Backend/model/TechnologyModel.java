@@ -20,7 +20,7 @@ public class TechnologyModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
-    private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
+    private String logo = "";
     private String name = "name";
 
     public TechnologyModel() {
