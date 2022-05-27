@@ -33,7 +33,7 @@ public class ContactService implements IService<ContactModel> {
                 case "phone" -> repo.updatePhone(id, field.get(key).toString());
                 case "linkedin" -> repo.updateLinkedin(id, field.get(key).toString());
                 case "address" -> repo.updateAddress(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                default -> throw new AssertionError("No existe la key en el modelo");
             }
         }
 

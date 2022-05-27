@@ -13,6 +13,10 @@ public class JobService implements IService<JobModel> {
 
     @Autowired
     JobRepository repo;
+    
+    public JobModel getOneById(int id){
+        return repo.findById(id).orElse(null);
+    }
 
     @Override
     public JobModel getOne() {
@@ -32,7 +36,8 @@ public class JobService implements IService<JobModel> {
                 case "name" -> repo.updateName(id, field.get(key).toString());
                 case "company" -> repo.updateCompany(id, field.get(key).toString());
                 case "date" -> repo.updateDate(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                case "extra" -> repo.updateExtra(id, field.get(key).toString());
+                default -> throw new AssertionError("No existe la key en el modelo");
             }
         }
     }

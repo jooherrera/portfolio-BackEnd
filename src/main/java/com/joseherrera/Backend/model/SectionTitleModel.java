@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "Section")
-public class SectionModel implements Serializable {
+public class SectionTitleModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +21,13 @@ public class SectionModel implements Serializable {
     private String sectionTitle;
     private boolean visible;
 
-
-    public SectionModel() {
+    public SectionTitleModel() {
     }
 
-    public SectionModel(int id, String sectionTitle, boolean visible) {
+    public SectionTitleModel(int id, String sectionTitle, boolean visible) {
         this.id = id;
         this.sectionTitle = sectionTitle;
         this.visible = visible;
     }
-
-
-   
 
 }

@@ -23,7 +23,7 @@ public class InstitutionModel implements Serializable {
     private String extra = "";
     private String title = "title";
     @Lob
-    private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
+    private String logo = "";
     private String name = "name";
 
     public InstitutionModel() {

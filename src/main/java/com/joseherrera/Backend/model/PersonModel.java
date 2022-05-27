@@ -19,8 +19,7 @@ public class PersonModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dni;
-    private String name;
-    private String lastName;
+    private String fullName;
     private String title;
     @Lob
     private String profileImg;
@@ -30,10 +29,9 @@ public class PersonModel implements Serializable {
     public PersonModel() {
     }
 
-    public PersonModel(int dni, String name, String lastName, String title, String profileImg, String bannerImg) {
+    public PersonModel(int dni, String fullName, String title, String profileImg, String bannerImg) {
         this.dni = dni;
-        this.name = name;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.title = title;
         this.profileImg = profileImg;
         this.bannerImg = bannerImg;

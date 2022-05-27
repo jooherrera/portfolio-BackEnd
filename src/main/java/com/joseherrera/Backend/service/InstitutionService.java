@@ -13,7 +13,11 @@ public class InstitutionService implements IService<InstitutionModel> {
 
     @Autowired
     InstitutionRepository repo;
-    
+
+    public InstitutionModel getOneById(int id) {
+        return repo.findById(id).orElse(null);
+    }
+
     @Override
     public InstitutionModel getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -26,17 +30,23 @@ public class InstitutionService implements IService<InstitutionModel> {
 
     @Override
     public void update(int id, Map<String, Object> field) {
-         for (String key : field.keySet()) {
+        for (String key : field.keySet()) {
             switch (key) {
-                case "date" -> repo.updateDate(id, field.get(key).toString());
-                case "extra" -> repo.updateExtra(id, field.get(key).toString());
-                case "title" -> repo.updateTitle(id, field.get(key).toString());
-                case "logo" -> repo.updateLogo(id, field.get(key).toString());
-                case "name" -> repo.updateName(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                case "date" ->
+                    repo.updateDate(id, field.get(key).toString());
+                case "extra" ->
+                    repo.updateExtra(id, field.get(key).toString());
+                case "title" ->
+                    repo.updateTitle(id, field.get(key).toString());
+                case "logo" ->
+                    repo.updateLogo(id, field.get(key).toString());
+                case "name" ->
+                    repo.updateName(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError("No existe la key en el modelo");
             }
         }
-         ;
+        ;
     }
 
     @Override

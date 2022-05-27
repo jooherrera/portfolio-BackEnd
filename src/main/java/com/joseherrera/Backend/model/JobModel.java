@@ -20,20 +20,22 @@ public class JobModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
-    private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
+    private String logo = "";
     private String name = "name";
     private String company = "company name";
     private String date = "date";
+    private String extra = "extra";
 
     public JobModel() {
     }
 
-    public JobModel(int id, String logo, String name, String company, String date ) {
+    public JobModel(int id, String logo, String name, String company, String date,String extra ) {
         this.id = id;
         this.logo = logo;
         this.name = name;
         this.company = company;
         this.date = date;
+        this.extra = extra;
     }
 
     

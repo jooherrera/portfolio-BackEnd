@@ -28,12 +28,11 @@ public class PersonService implements IService<PersonModel> {
     public void update(int id, Map<String, Object> field) {
         for (String key : field.keySet()) {
             switch (key) {
-                case "name" -> repo.updateName(id, field.get(key).toString());
-                case "lastName" -> repo.updateLastName(id, field.get(key).toString());
+                case "fullName" -> repo.updateFullName(id, field.get(key).toString());
                 case "title" -> repo.updateTitle(id, field.get(key).toString());
                 case "profileImg" -> repo.updateProfileImg(id, field.get(key).toString());
                 case "bannerImg" -> repo.updateBannerImg(id, field.get(key).toString());
-                default -> throw new AssertionError();
+                default -> throw new AssertionError("No existe la key en el modelo");
             }
         }
     }
