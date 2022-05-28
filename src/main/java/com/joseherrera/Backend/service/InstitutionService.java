@@ -18,6 +18,11 @@ public class InstitutionService implements IService<InstitutionModel> {
     public InstitutionModel getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
+
+    @Override
+    public InstitutionModel addWithId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 
     @Override

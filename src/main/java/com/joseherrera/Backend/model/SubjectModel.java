@@ -6,11 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Subject")
 public class SubjectModel implements Serializable{
@@ -22,17 +28,6 @@ public class SubjectModel implements Serializable{
     private String date = "Fecha de finalización";
     private String certificate = "Link del certificado";
     private int schoolId;
-
-    public SubjectModel() {
-    }
-
-    public SubjectModel(int id, String title, String date, String certificate, int schoolId) {
-        this.id = id;
-        this.title = title;
-        this.date = date;
-        this.certificate = certificate;
-        this.schoolId = schoolId;
-    }
 
 
 }

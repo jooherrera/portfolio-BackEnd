@@ -1,8 +1,11 @@
 package com.joseherrera.Backend.service;
 
+import com.joseherrera.Backend.dto.SubjectItemDto;
+import com.joseherrera.Backend.dto.SchoolDto;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.SchoolModel;
 import com.joseherrera.Backend.repository.SchoolRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,31 @@ public class SchoolService implements IService<SchoolModel> {
     @Autowired
     SchoolRepository repo;
 
+    public List<SchoolModel> getAllDto(){
+        return repo.findAll();
+        
+        /*
+        List<SchoolModel> listSchool = this.getAll();
+        List<SchoolResponse> newList = new ArrayList<>();
+        
+        for (SchoolModel school : listSchool) {
+
+            List<SchoolDto> found = repo.getJoin(school.getId());
+
+            SchoolResponse newResp = new SchoolResponse(school.getId(), school.getCompany(), school.getLogo(), found);
+
+            newList.add(newResp);
+        }
+        */
+        
+        
+        
+        
+    }
+    
     @Override
     public SchoolModel getOneById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -27,6 +52,11 @@ public class SchoolService implements IService<SchoolModel> {
     @Override
     public SchoolModel add() {
         return repo.save(new SchoolModel());
+    }
+
+    @Override
+    public SchoolModel addWithId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

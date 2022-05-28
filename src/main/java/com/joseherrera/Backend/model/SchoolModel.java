@@ -1,18 +1,29 @@
 package com.joseherrera.Backend.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "School")
 public class SchoolModel implements Serializable {
 
@@ -21,15 +32,6 @@ public class SchoolModel implements Serializable {
     private int id;
     private String company = "Company";
     @Lob
-    private String logo = "i.ibb.co/WHDLsLN/default-Logo.png";
-
-    public SchoolModel() {
-    }
-
-    public SchoolModel(int id, String company, String logo) {
-        this.id = id;
-        this.company = company;
-        this.logo = logo;
-    }
+    private String logo = "";
 
 }

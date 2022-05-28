@@ -16,7 +16,7 @@ public class ProjectService implements IService<ProjectModel> {
 
     @Override
     public ProjectModel getOneById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -27,6 +27,11 @@ public class ProjectService implements IService<ProjectModel> {
     @Override
     public ProjectModel add() {
         return repo.save(new ProjectModel());
+    }
+
+    @Override
+    public ProjectModel addWithId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

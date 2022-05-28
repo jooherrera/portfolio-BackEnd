@@ -10,6 +10,8 @@ public interface IService<T> {
     public T getOne();
     
     public T add();
+    
+    public T addWithId(int id);
 
     public void update(int id, Map<String, Object> field);
 

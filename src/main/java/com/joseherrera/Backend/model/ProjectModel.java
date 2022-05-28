@@ -22,18 +22,16 @@ public class ProjectModel implements Serializable {
     private String description = "Description";
     private String githubLink = "Github Link";
     private String webLink = "Web link";
-    private int sectionId;
 
     public ProjectModel() {
     }
 
-    public ProjectModel(int id, String name, String description, String githubLink, String webLink, int sectionId) {
+    public ProjectModel(int id, String name, String description, String githubLink, String webLink) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.githubLink = githubLink;
         this.webLink = webLink;
-        this.sectionId = sectionId;
     }
 
 }

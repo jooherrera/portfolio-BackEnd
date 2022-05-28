@@ -62,7 +62,7 @@ public class SectionController {
                 case "soft-skill":
                     sectionInfo = service.getOneById(SectionNames.SSKILL.ordinal() + 1);
                     break;
-                case "project":
+                case "personal-project":
                     sectionInfo = service.getOneById(SectionNames.PROJECT.ordinal() + 1);
                     break;
                 default:
@@ -114,7 +114,7 @@ public class SectionController {
                     service.update(SectionNames.SSKILL.ordinal() + 1, field);
                      modelUpdated = service.getOneById(SectionNames.SSKILL.ordinal() + 1);
                     break;
-                case "project":
+                case "personal-project":
                     service.update(SectionNames.PROJECT.ordinal() + 1, field);
                      modelUpdated = service.getOneById(SectionNames.PROJECT.ordinal() + 1);
                     break;

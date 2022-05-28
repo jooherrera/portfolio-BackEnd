@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SchoolRepository extends JpaRepository<SchoolModel, Integer> {
 
+    
     @Transactional
     @Modifying
     @Query(value = "UPDATE School SET company = :value WHERE id = :id", nativeQuery = true)

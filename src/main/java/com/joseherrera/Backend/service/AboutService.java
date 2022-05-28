@@ -2,6 +2,7 @@ package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.AboutModel;
+import com.joseherrera.Backend.model.SubjectModel;
 import com.joseherrera.Backend.repository.AboutRepository;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,12 @@ public class AboutService implements IService<AboutModel> {
     public AboutModel getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    @Override
+    public AboutModel addWithId(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     @Override
     public AboutModel getOne() {
         return repo.findAll().get(0);
@@ -29,8 +35,10 @@ public class AboutService implements IService<AboutModel> {
 
         for (String key : field.keySet()) {
             switch (key) {
-                case "paragraph" -> repo.updateParagraph(id, field.get(key).toString());
-                default -> throw new AssertionError("No existe la key en el modelo");
+                case "paragraph" ->
+                    repo.updateParagraph(id, field.get(key).toString());
+                default ->
+                    throw new AssertionError("No existe la key en el modelo");
             }
         }
     }

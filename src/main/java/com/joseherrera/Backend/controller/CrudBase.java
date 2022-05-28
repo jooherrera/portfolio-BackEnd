@@ -12,6 +12,7 @@ import io.jsonwebtoken.SignatureException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,8 +27,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-public class CrudBase<T>{
-@Value("${jwt.secret.key}")
+public class CrudBase<T> {
+
+    @Value("${jwt.secret.key}")
     String secret;
 
     @Autowired
@@ -43,12 +45,11 @@ public class CrudBase<T>{
     }
 
     @PostMapping("/")
-    public T add() {
+    public T add(@PathVariable(required = false) Optional<Integer> id) {
         return service.add();
     }
 
-    
-     @PatchMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
@@ -57,11 +58,10 @@ public class CrudBase<T>{
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
             }
-            
+
             service.update(id, field);
-            
+
             T updatedModel = service.getOneById(id);
-            
 
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
@@ -75,7 +75,7 @@ public class CrudBase<T>{
         }
 
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
@@ -95,6 +95,5 @@ public class CrudBase<T>{
             return new ResponseEntity(response.error("No existe el id ingresado"), HttpStatus.BAD_REQUEST);
         }
     }
-    
 
 }

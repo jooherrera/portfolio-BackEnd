@@ -1,5 +1,6 @@
 package com.joseherrera.Backend.service;
 
+import com.joseherrera.Backend.dto.SubjectItemDto;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.SubjectModel;
 import com.joseherrera.Backend.repository.SubjectRepository;
@@ -15,8 +16,16 @@ public class SubjectService implements IService<SubjectModel> {
     SubjectRepository repo;
 
     @Override
+    public SubjectModel addWithId(int schoolId) {
+        SubjectModel newModel = new SubjectModel();
+        newModel.setSchoolId(schoolId);
+        return repo.save(newModel);
+        
+    }
+
+    @Override
     public SubjectModel getOneById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return repo.findById(id).orElse(null);
     }
 
     @Override
@@ -26,7 +35,7 @@ public class SubjectService implements IService<SubjectModel> {
 
     @Override
     public SubjectModel add() {
-        return repo.save(new SubjectModel());
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -55,8 +64,9 @@ public class SubjectService implements IService<SubjectModel> {
         return repo.findAll();
     }
 
-    public List<SubjectModel> getAllBySchoolId(int schoolId) {
-        return repo.findBySchoolId(schoolId);
+    public List<SubjectItemDto> getAllBySchoolId(int schoolId) {
+        return repo.getAllBySchoolId(schoolId);
+
     }
 
 }
