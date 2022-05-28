@@ -12,7 +12,6 @@ public class Controller {
 
     @GetMapping("/")
     public String home() {
-
         return "Home API - V1 -- " + envName;
     }
 }
