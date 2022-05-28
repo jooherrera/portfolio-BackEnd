@@ -3,15 +3,12 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.TechnologyModel;
-import com.joseherrera.Backend.service.TechnologyService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
 import io.jsonwebtoken.SignatureException;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,7 +50,7 @@ public class CrudBase<T> {
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
@@ -80,7 +77,7 @@ public class CrudBase<T> {
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            jwToken.validate(authHeader);
 
             service.delete(id);
 

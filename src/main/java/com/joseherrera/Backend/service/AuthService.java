@@ -19,20 +19,17 @@ public class AuthService implements IAuthService {
     @Autowired
     private Encrypt encrypter;
 
-
     @Override
     public void changePassword(int id, String newPassword) {
-        
-       AuthModel found = authRepo.findById(id).orElse(null);
-       
+
+        AuthModel found = authRepo.findById(id).orElse(null);
+
         System.out.println(newPassword);
-       
-       found.setPassword(encrypter.encryptPassword(newPassword));
-       
-       authRepo.save(found);
+
+        found.setPassword(encrypter.encryptPassword(newPassword));
+
+        authRepo.save(found);
     }
-    
-    
 
     @Override
     public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException {
@@ -40,9 +37,9 @@ public class AuthService implements IAuthService {
         try {
             String email = loginRequest.getEmail();
             String password = loginRequest.getPassword();
-            
+
             AuthModel authFound = authRepo.findByEmail(email).orElse(null);
-            
+
             if (Objects.isNull(authFound)) {
                 throw new LoginException("Email o contraseña incorrecto");
             }
@@ -60,8 +57,5 @@ public class AuthService implements IAuthService {
         } catch (LoginException e) {
             throw new LoginException(e.getMessage());
         }
-
     }
-
-
 }

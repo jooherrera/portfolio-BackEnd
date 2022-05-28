@@ -1,7 +1,6 @@
 package com.joseherrera.Backend.utils;
 
 import com.joseherrera.Backend.exception.WrongTokenException;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,23 +9,21 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 import com.joseherrera.Backend.interfaces.IJwToken;
-import io.jsonwebtoken.impl.crypto.DefaultSignatureValidatorFactory;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import java.util.Objects;
 
 @Getter
 public class JwToken implements IJwToken {
 
     private final String secret;
-    private Long expTime = 0L;
     private Map<String, Object> claims;
+
+
 
     public JwToken(String secret) {
         this.secret = secret;
-    }
-
-    public JwToken(String secret, Long expTime) {
-        this.secret = secret;
-        this.expTime = expTime;
         this.claims = new HashMap<>();
     }
 
@@ -46,7 +43,7 @@ public class JwToken implements IJwToken {
     }
 
     @Override
-    public Token getTokenPayload(String headerToken) throws WrongTokenException {
+    public Token validate(String headerToken) throws WrongTokenException {
         try {
 
             if (Objects.isNull(headerToken)) {
@@ -64,9 +61,7 @@ public class JwToken implements IJwToken {
 
             return new Token(pk, dni, isAdmin);
 
-        } catch (MalformedJwtException e) {
-            throw new WrongTokenException("Token inválido");
-        } catch (Exception e){
+        } catch (MalformedJwtException | WrongTokenException | ExpiredJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException e) {
             throw new WrongTokenException("Token inválido");
         }
     }

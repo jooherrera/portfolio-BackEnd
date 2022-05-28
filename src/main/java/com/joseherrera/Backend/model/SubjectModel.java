@@ -10,16 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "Subject")
-public class SubjectModel implements Serializable{
+public class SubjectModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +26,5 @@ public class SubjectModel implements Serializable{
     private String date = "Fecha de finalización";
     private String certificate = "Link del certificado";
     private int schoolId;
-
 
 }

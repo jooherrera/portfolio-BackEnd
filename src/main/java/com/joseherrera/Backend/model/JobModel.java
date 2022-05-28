@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Job")
 public class JobModel implements Serializable {
@@ -25,18 +29,5 @@ public class JobModel implements Serializable {
     private String company = "company name";
     private String date = "date";
     private String extra = "extra";
-
-    public JobModel() {
-    }
-
-    public JobModel(int id, String logo, String name, String company, String date,String extra ) {
-        this.id = id;
-        this.logo = logo;
-        this.name = name;
-        this.company = company;
-        this.date = date;
-        this.extra = extra;
-    }
-
     
 }

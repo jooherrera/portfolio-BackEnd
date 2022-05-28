@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Institution")
 public class InstitutionModel implements Serializable {
@@ -25,17 +29,5 @@ public class InstitutionModel implements Serializable {
     @Lob
     private String logo = "";
     private String name = "name";
-
-    public InstitutionModel() {
-    }
-
-    public InstitutionModel(int id, String date, String extra, String title, String logo, String name) {
-        this.id = id;
-        this.date = date;
-        this.extra = extra;
-        this.title = title;
-        this.logo = logo;
-        this.name = name;
-    }
 
 }

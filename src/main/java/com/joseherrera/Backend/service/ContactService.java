@@ -59,5 +59,4 @@ public class ContactService implements IService<ContactModel> {
     public List<ContactModel> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Skill")
 public class SkillModel implements Serializable {
@@ -21,12 +25,4 @@ public class SkillModel implements Serializable {
     private String name = "New skill";
     private int porcent = 0;
 
-    public SkillModel() {
-    }
-
-    public SkillModel(int id, String name, int porcent) {
-        this.id = id;
-        this.name = name;
-        this.porcent = porcent;
-    }
 }

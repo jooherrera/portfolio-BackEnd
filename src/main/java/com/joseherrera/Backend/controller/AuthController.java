@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -32,9 +31,6 @@ public class AuthController {
     @Value("${jwt.secret.key}")
     String secret;
 
-    @Value("${jwt.expTime}")
-    Long expTime;
-
     @Autowired
     IAuthService authService;
 
@@ -44,10 +40,10 @@ public class AuthController {
     @Autowired
     Response response;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin("*")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginDto) {
-        IJwToken jwToken = new JwToken(secret, expTime);
+        IJwToken jwToken = new JwToken(secret);
         try {
             AuthModel found = authService.findAuth(loginDto);
 
@@ -66,7 +62,6 @@ public class AuthController {
         } catch (LoginException e) {
             return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
         }
-
     }
 
     @PostMapping("/reset-password")
@@ -75,7 +70,7 @@ public class AuthController {
         try {
             IJwToken jwToken = new JwToken(secret);
 
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             authService.changePassword(token.getPrimaryKey(), request.getNewPassword());
 
@@ -84,22 +79,5 @@ public class AuthController {
         } catch (WrongTokenException e) {
             return new ResponseEntity<>(response.error("Error en el token"), HttpStatus.NOT_MODIFIED);
         }
-
-    }
-
-    @GetMapping("/dash")
-    public ResponseEntity<Object> dash(@RequestHeader(value = "Authorization", required = false) String authHeader) {
-        try {
-
-            IJwToken jwToken = new JwToken(secret);
-
-            Token token = jwToken.getTokenPayload(authHeader);
-
-            return new ResponseEntity<>(response.successWithObject(token), HttpStatus.ACCEPTED);
-
-        } catch (WrongTokenException e) {
-            return new ResponseEntity<>(response.error(e.getMessage()), HttpStatus.UNAUTHORIZED);
-        }
-
     }
 }

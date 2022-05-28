@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Technology")
 public class TechnologyModel implements Serializable {
@@ -22,14 +26,5 @@ public class TechnologyModel implements Serializable {
     @Lob
     private String logo = "";
     private String name = "name";
-
-    public TechnologyModel() {
-    }
-
-    public TechnologyModel(int id, String logo, String name) {
-        this.id = id;
-        this.logo = logo;
-        this.name = name;
-    }
 
 }

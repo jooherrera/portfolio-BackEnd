@@ -81,7 +81,7 @@ public class SectionController {
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable String sectionName) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");

@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Person")
 public class PersonModel implements Serializable {
@@ -25,16 +29,5 @@ public class PersonModel implements Serializable {
     private String profileImg;
     @Lob
     private String bannerImg;
-
-    public PersonModel() {
-    }
-
-    public PersonModel(int dni, String fullName, String title, String profileImg, String bannerImg) {
-        this.dni = dni;
-        this.fullName = fullName;
-        this.title = title;
-        this.profileImg = profileImg;
-        this.bannerImg = bannerImg;
-    }
 
 }

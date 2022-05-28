@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Project")
 public class ProjectModel implements Serializable {
@@ -22,16 +26,5 @@ public class ProjectModel implements Serializable {
     private String description = "Description";
     private String githubLink = "Github Link";
     private String webLink = "Web link";
-
-    public ProjectModel() {
-    }
-
-    public ProjectModel(int id, String name, String description, String githubLink, String webLink) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.githubLink = githubLink;
-        this.webLink = webLink;
-    }
 
 }

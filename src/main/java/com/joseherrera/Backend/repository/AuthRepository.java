@@ -10,5 +10,4 @@ public interface AuthRepository extends JpaRepository<AuthModel, Integer> {
 
     Optional<AuthModel> findByEmail(String email);
 
-    boolean existsByEmail(String email);
 }

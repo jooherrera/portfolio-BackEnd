@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "About")
 public class AboutModel implements Serializable{
@@ -19,13 +23,5 @@ public class AboutModel implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String paragraph;
-
-    public AboutModel() {
-    }
-
-    public AboutModel(int id, String paragraph) {
-        this.id = id;
-        this.paragraph = paragraph;
-    }
 
 }

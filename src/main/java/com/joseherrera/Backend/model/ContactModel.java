@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Contact")
 public class ContactModel implements Serializable {
@@ -23,15 +27,5 @@ public class ContactModel implements Serializable {
     private String linkedin;
     private String address;
 
-    public ContactModel() {
-    }
-
-    public ContactModel(int id, String email, String phone, String linkedin, String address) {
-        this.id = id;
-        this.email = email;
-        this.phone = phone;
-        this.linkedin = linkedin;
-        this.address = address;
-    }
 
 }

@@ -5,7 +5,6 @@ import com.joseherrera.Backend.dto.SchoolDto;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.model.SchoolModel;
-import com.joseherrera.Backend.model.SubjectModel;
 import com.joseherrera.Backend.service.SchoolService;
 import com.joseherrera.Backend.service.SubjectService;
 import com.joseherrera.Backend.utils.JwToken;
@@ -69,7 +68,7 @@ public class SchoolController {
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id)  {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
@@ -78,9 +77,6 @@ public class SchoolController {
             service.update(id, field);
 
             SchoolModel updatedModel = service.getOneById(id);
-
-            
-            
             
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
@@ -105,7 +101,7 @@ public class SchoolController {
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            jwToken.validate(authHeader);
 
             service.delete(id);
 
@@ -120,7 +116,5 @@ public class SchoolController {
             return new ResponseEntity(response.error("No existe el id ingresado"), HttpStatus.BAD_REQUEST);
         }
     }
-
 }
 
- //extends CrudBase<SchoolModel>

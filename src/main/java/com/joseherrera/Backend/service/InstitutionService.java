@@ -53,7 +53,6 @@ public class InstitutionService implements IService<InstitutionModel> {
                     throw new AssertionError("No existe la key en el modelo");
             }
         }
-        ;
     }
 
     @Override

@@ -14,6 +14,7 @@ public class SectionService implements IService<SectionTitleModel> {
     @Autowired
     SectionRepository repo;
     
+    @Override
     public SectionTitleModel getOneById(int id){
         return repo.findById(id).orElse(null);
     }

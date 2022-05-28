@@ -2,7 +2,6 @@ package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.AboutModel;
-import com.joseherrera.Backend.model.SubjectModel;
 import com.joseherrera.Backend.repository.AboutRepository;
 import java.util.List;
 import java.util.Map;

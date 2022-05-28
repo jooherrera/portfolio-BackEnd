@@ -3,7 +3,6 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.AboutModel;
 import com.joseherrera.Backend.model.ContactModel;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
@@ -48,7 +47,7 @@ public class ContactController {
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) throws Exception {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
@@ -57,7 +56,6 @@ public class ContactController {
             service.update(id, field);
             
             ContactModel updatedModel = service.getOne();
-            
 
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
@@ -69,8 +67,5 @@ public class ContactController {
         } catch (Exception e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-
     }
-    
-    
 }

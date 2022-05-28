@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Section")
 public class SectionTitleModel implements Serializable {
@@ -20,14 +24,5 @@ public class SectionTitleModel implements Serializable {
     private int id;
     private String sectionTitle;
     private boolean visible;
-
-    public SectionTitleModel() {
-    }
-
-    public SectionTitleModel(int id, String sectionTitle, boolean visible) {
-        this.id = id;
-        this.sectionTitle = sectionTitle;
-        this.visible = visible;
-    }
 
 }

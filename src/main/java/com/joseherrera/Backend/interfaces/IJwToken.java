@@ -9,6 +9,6 @@ public interface IJwToken {
 
     public String generateToken();
 
-    public Token getTokenPayload(String headerToken) throws WrongTokenException;
+    public Token validate(String headerToken) throws WrongTokenException;
 
 }

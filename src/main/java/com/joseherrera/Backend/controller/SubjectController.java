@@ -52,13 +52,7 @@ public class SubjectController {
     @GetMapping("/")
     @ResponseBody
     public List<SubjectModel> get(@PathVariable Optional<Integer> schoolId) {
-         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        /*
-         if (schoolId.isEmpty()) {
-            return subjectService.getAll();
-        }
-        return subjectService.getAllBySchoolId(schoolId.get());
-         */
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @PostMapping("/")
@@ -73,7 +67,7 @@ public class SubjectController {
     public ResponseEntity<Object> update(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody Map<String, Object> field, @PathVariable int id) {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            Token token = jwToken.validate(authHeader);
 
             if (!token.getIsAdmin()) {
                 throw new WrongTokenException("No estas autorizado a modificar");
@@ -93,14 +87,13 @@ public class SubjectController {
         } catch (Exception e) {
             return new ResponseEntity(response.error(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> delete(@RequestHeader(value = "Authorization", required = false) String authHeader, @PathVariable int id) {
         try {
             IJwToken jwToken = new JwToken(secret);
-            Token token = jwToken.getTokenPayload(authHeader);
+            jwToken.validate(authHeader);
 
             subjectService.delete(id);
 
