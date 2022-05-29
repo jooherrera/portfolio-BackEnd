@@ -17,7 +17,7 @@ public interface SubjectRepository extends JpaRepository<Subject, Integer> {
 
     @Transactional
     @Modifying
-    @Query(value = "SELECT new com.joseherrera.Backend.dto.SubjectItemDto(s.id,s.title,s.date,s.certificate) FROM SubjectModel s WHERE schoolId = :id ")
+    @Query(value = "SELECT new com.joseherrera.Backend.dto.SubjectItemDto(s.id,s.title,s.date,s.certificate) FROM Subject s WHERE schoolId = :id ")
     List<SubjectItemDto> getAllBySchoolId(@Param("id") int id);
     
     

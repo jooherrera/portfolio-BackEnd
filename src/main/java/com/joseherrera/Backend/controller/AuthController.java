@@ -22,6 +22,7 @@ import com.joseherrera.Backend.model.Person;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/auth")
 public class AuthController {
 
@@ -43,7 +44,6 @@ public class AuthController {
     @Autowired
     Response response;
 
-    @CrossOrigin("*")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginDto) {
         IJwToken jwToken = new JwToken(secret);
@@ -71,13 +71,12 @@ public class AuthController {
     public ResponseEntity<Object> resetPassword(@RequestBody ChangePasswordRequestDto request) {
 
         try {
-            
-            if(!request.getPassSecret().equals(this.passSecret)){
+
+            if (!request.getPassSecret().equals(this.passSecret)) {
                 throw new Exception("No podes modificar la contraseña");
             }
-            
+
             authService.changePassword(email, request.getNewPassword());
-            
 
             return new ResponseEntity<>(response.success("Contraseña actualizada"), HttpStatus.ACCEPTED);
 
