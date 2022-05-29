@@ -31,6 +31,12 @@ public class AuthController {
     @Value("${jwt.secret.key}")
     String secret;
 
+    @Value("${pass.secret}")
+    String passSecret;
+
+    @Value("${registered.email}")
+    String email;
+
     @Autowired
     IAuthService authService;
 
@@ -65,19 +71,21 @@ public class AuthController {
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<Object> resetPassword(@RequestHeader(value = "Authorization", required = false) String authHeader, @RequestBody ChangePasswordRequestDto request) {
+    public ResponseEntity<Object> resetPassword(@RequestBody ChangePasswordRequestDto request) {
 
         try {
-            IJwToken jwToken = new JwToken(secret);
-
-            Token token = jwToken.validate(authHeader);
-
-            authService.changePassword(token.getPrimaryKey(), request.getNewPassword());
+            
+            if(!request.getPassSecret().equals(this.passSecret)){
+                throw new Exception("No podes modificar la contraseña");
+            }
+            
+            authService.changePassword(email, request.getNewPassword());
+            
 
             return new ResponseEntity<>(response.success("Contraseña actualizada"), HttpStatus.ACCEPTED);
 
-        } catch (WrongTokenException e) {
-            return new ResponseEntity<>(response.error("Error en el token"), HttpStatus.NOT_MODIFIED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(response.error("No podes modificar la contraseña"), HttpStatus.UNAUTHORIZED);
         }
     }
 }

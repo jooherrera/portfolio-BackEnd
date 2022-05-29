@@ -6,7 +6,7 @@ import com.joseherrera.Backend.model.AuthModel;
 
 public interface IAuthService {
 
-    public void changePassword(int id, String newPassword);
+    public void changePassword(String email, String newPassword);
 
     public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException;
 }

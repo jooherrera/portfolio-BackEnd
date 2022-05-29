@@ -20,11 +20,9 @@ public class AuthService implements IAuthService {
     private Encrypt encrypter;
 
     @Override
-    public void changePassword(int id, String newPassword) {
+    public void changePassword(String email, String newPassword) {
 
-        AuthModel found = authRepo.findById(id).orElse(null);
-
-        System.out.println(newPassword);
+        AuthModel found = authRepo.findByEmail(email).orElse(null);
 
         found.setPassword(encrypter.encryptPassword(newPassword));
 
