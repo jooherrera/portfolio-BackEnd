@@ -16,13 +16,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Skill")
-public class SkillModel implements Serializable {
+@Table(name = "Section")
+public class Section implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name = "New skill";
-    private int porcent = 0;
+    private String sectionTitle;
+    private boolean visible;
 
 }

@@ -1,6 +1,6 @@
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.model.PersonModel;
+import com.joseherrera.Backend.model.Person;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonRepository extends JpaRepository<PersonModel, Integer> {
+public interface PersonRepository extends JpaRepository<Person, Integer> {
 
     @Transactional
     @Modifying

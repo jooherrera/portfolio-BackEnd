@@ -17,17 +17,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Job")
-public class JobModel implements Serializable {
+@Table(name = "Institution")
+public class Institution implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String date = "date";
+    private String extra = "";
+    private String title = "title";
     @Lob
     private String logo = "";
     private String name = "name";
-    private String company = "company name";
-    private String date = "date";
-    private String extra = "extra";
-    
+
 }

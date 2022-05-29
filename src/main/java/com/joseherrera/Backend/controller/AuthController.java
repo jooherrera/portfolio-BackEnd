@@ -5,7 +5,7 @@ import com.joseherrera.Backend.dto.LoginRequestDto;
 
 import com.joseherrera.Backend.exception.LoginException;
 import com.joseherrera.Backend.interfaces.IAuthService;
-import com.joseherrera.Backend.model.AuthModel;
+import com.joseherrera.Backend.model.Auth;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.PersonModel;
+import com.joseherrera.Backend.model.Person;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
@@ -38,7 +38,7 @@ public class AuthController {
     IAuthService authService;
 
     @Autowired
-    IService<PersonModel> personService;
+    IService<Person> personService;
 
     @Autowired
     Response response;
@@ -48,12 +48,12 @@ public class AuthController {
     public ResponseEntity<Object> login(@RequestBody LoginRequestDto loginDto) {
         IJwToken jwToken = new JwToken(secret);
         try {
-            AuthModel found = authService.findAuth(loginDto);
+            Auth found = authService.findAuth(loginDto);
 
             jwToken.addClaim("id", found.getId());
             jwToken.addClaim("email", found.getEmail());
 
-            PersonModel personFound = personService.getOne();
+            Person personFound = personService.getOne();
 
             jwToken.addClaim("dni", personFound.getDni());
             jwToken.addClaim("isAdmin", true);

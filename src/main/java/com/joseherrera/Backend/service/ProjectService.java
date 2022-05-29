@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.ProjectModel;
+import com.joseherrera.Backend.model.Project;
 import com.joseherrera.Backend.repository.ProjectRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,28 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProjectService implements IService<ProjectModel> {
+public class ProjectService implements IService<Project> {
 
     @Autowired
     ProjectRepository repo;
 
     @Override
-    public ProjectModel getOneById(int id) {
+    public Project getOneById(int id) {
          return repo.findById(id).orElse(null);
     }
 
     @Override
-    public ProjectModel getOne() {
+    public Project getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ProjectModel add() {
-        return repo.save(new ProjectModel());
+    public Project add() {
+        return repo.save(new Project());
     }
 
     @Override
-    public ProjectModel addWithId(int id) {
+    public Project addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -58,7 +58,7 @@ public class ProjectService implements IService<ProjectModel> {
     }
 
     @Override
-    public List<ProjectModel> getAll() {
+    public List<Project> getAll() {
         return repo.findAll();
     }
 

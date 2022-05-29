@@ -2,11 +2,11 @@ package com.joseherrera.Backend.interfaces;
 
 import com.joseherrera.Backend.dto.LoginRequestDto;
 import com.joseherrera.Backend.exception.LoginException;
-import com.joseherrera.Backend.model.AuthModel;
+import com.joseherrera.Backend.model.Auth;
 
 public interface IAuthService {
 
     public void changePassword(String email, String newPassword);
 
-    public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException;
+    public Auth findAuth(LoginRequestDto loginRequest) throws LoginException;
 }

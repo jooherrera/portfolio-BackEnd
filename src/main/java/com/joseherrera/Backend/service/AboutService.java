@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.AboutModel;
+import com.joseherrera.Backend.model.About;
 import com.joseherrera.Backend.repository.AboutRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AboutService implements IService<AboutModel> {
+public class AboutService implements IService<About> {
 
     @Autowired
     AboutRepository repo;
 
     @Override
-    public AboutModel getOneById(int id) {
+    public About getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public AboutModel addWithId(int id) {
+    public About addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public AboutModel getOne() {
+    public About getOne() {
         return repo.findAll().get(0);
     }
 
@@ -43,7 +43,7 @@ public class AboutService implements IService<AboutModel> {
     }
 
     @Override
-    public AboutModel add() {
+    public About add() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -53,7 +53,7 @@ public class AboutService implements IService<AboutModel> {
     }
 
     @Override
-    public List<AboutModel> getAll() {
+    public List<About> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

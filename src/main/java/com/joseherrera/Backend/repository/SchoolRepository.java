@@ -1,6 +1,6 @@
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.model.SchoolModel;
+import com.joseherrera.Backend.model.School;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SchoolRepository extends JpaRepository<SchoolModel, Integer> {
+public interface SchoolRepository extends JpaRepository<School, Integer> {
 
     
     @Transactional

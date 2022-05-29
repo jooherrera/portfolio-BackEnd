@@ -3,7 +3,7 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.ContactModel;
+import com.joseherrera.Backend.model.Contact;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
 import com.joseherrera.Backend.utils.Token;
@@ -32,14 +32,14 @@ public class ContactController {
     String secret;
 
     @Autowired
-    IService<ContactModel> service;
+    IService<Contact> service;
 
     @Autowired
     Response response;
 
     @GetMapping("/")
     @ResponseBody
-    public ContactModel get() {
+    public Contact get() {
         return service.getOne();
     }
     
@@ -55,7 +55,7 @@ public class ContactController {
             
             service.update(id, field);
             
-            ContactModel updatedModel = service.getOne();
+            Contact updatedModel = service.getOne();
 
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {

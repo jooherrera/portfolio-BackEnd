@@ -1,6 +1,6 @@
 package com.joseherrera.Backend.controller;
 
-import com.joseherrera.Backend.model.ProjectModel;
+import com.joseherrera.Backend.model.Project;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/personal-project/project")
-public class ProjectController extends CrudBase<ProjectModel>  {
+public class ProjectController extends CrudBase<Project>  {
 
 }

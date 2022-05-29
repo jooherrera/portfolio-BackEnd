@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.SchoolModel;
+import com.joseherrera.Backend.model.School;
 import com.joseherrera.Backend.repository.SchoolRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,28 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SchoolService implements IService<SchoolModel> {
+public class SchoolService implements IService<School> {
 
     @Autowired
     SchoolRepository repo;
 
     @Override
-    public SchoolModel getOneById(int id) {
+    public School getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public SchoolModel getOne() {
+    public School getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public SchoolModel add() {
-        return repo.save(new SchoolModel());
+    public School add() {
+        return repo.save(new School());
     }
 
     @Override
-    public SchoolModel addWithId(int id) {
+    public School addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -54,7 +54,7 @@ public class SchoolService implements IService<SchoolModel> {
     }
 
     @Override
-    public List<SchoolModel> getAll() {
+    public List<School> getAll() {
         return repo.findAll();
     }
 

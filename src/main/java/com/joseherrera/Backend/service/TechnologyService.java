@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.TechnologyModel;
+import com.joseherrera.Backend.model.Technology;
 import com.joseherrera.Backend.repository.TechnologyRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TechnologyService implements IService<TechnologyModel> {
+public class TechnologyService implements IService<Technology> {
 
     @Autowired
     TechnologyRepository repo;
 
-     public TechnologyModel getOneById(int id) {
+     public Technology getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
     
     @Override
-    public TechnologyModel getOne() {
+    public Technology getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public TechnologyModel add() {
-       return repo.save(new TechnologyModel());
+    public Technology add() {
+       return repo.save(new Technology());
     }
 
     @Override
@@ -40,7 +40,7 @@ public class TechnologyService implements IService<TechnologyModel> {
     }
 
     @Override
-    public TechnologyModel addWithId(int id) {
+    public Technology addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
@@ -51,7 +51,7 @@ public class TechnologyService implements IService<TechnologyModel> {
     }
 
     @Override
-    public List<TechnologyModel> getAll() {
+    public List<Technology> getAll() {
         return repo.findAll();
     }
 

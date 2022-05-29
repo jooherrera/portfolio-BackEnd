@@ -1,7 +1,7 @@
 
 package com.joseherrera.Backend.controller;
 
-import com.joseherrera.Backend.model.SkillModel;
+import com.joseherrera.Backend.model.Skill;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/soft-skill/skill")
-public class SkillController  extends CrudBase<SkillModel> {
+public class SkillController  extends CrudBase<Skill> {
     
 }

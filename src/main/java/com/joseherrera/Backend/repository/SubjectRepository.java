@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.repository;
 
 import com.joseherrera.Backend.dto.SubjectItemDto;
-import com.joseherrera.Backend.model.SubjectModel;
+import com.joseherrera.Backend.model.Subject;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,9 +11,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SubjectRepository extends JpaRepository<SubjectModel, Integer> {
+public interface SubjectRepository extends JpaRepository<Subject, Integer> {
 
-    List<SubjectModel> findBySchoolId(int schoolId);
+    List<Subject> findBySchoolId(int schoolId);
 
     @Transactional
     @Modifying

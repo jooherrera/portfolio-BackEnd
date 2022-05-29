@@ -11,22 +11,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@Entity
-@ToString
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "School")
-public class SchoolModel implements Serializable {
+@AllArgsConstructor
+@Entity
+@Table(name = "Person")
+public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String company = "Company";
+    private int dni;
+    private String fullName;
+    private String title;
     @Lob
-    private String logo = "";
+    private String profileImg;
+    @Lob
+    private String bannerImg;
 
 }

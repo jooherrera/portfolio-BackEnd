@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,17 +16,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Person")
-public class PersonModel implements Serializable {
+@Table(name = "Skill")
+public class Skill implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int dni;
-    private String fullName;
-    private String title;
-    @Lob
-    private String profileImg;
-    @Lob
-    private String bannerImg;
+    private int id;
+    private String name = "New skill";
+    private int porcent = 0;
 
 }

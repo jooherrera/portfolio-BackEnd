@@ -16,15 +16,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Project")
-public class ProjectModel implements Serializable {
+@Table(name = "Auth")
+public class Auth implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name = "Project name";
-    private String description = "Description";
-    private String githubLink = "Github Link";
-    private String webLink = "Web link";
+    private String email;
+    private String password;
 
 }

@@ -2,7 +2,7 @@ package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.dto.SubjectItemDto;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.SubjectModel;
+import com.joseherrera.Backend.model.Subject;
 import com.joseherrera.Backend.repository.SubjectRepository;
 import java.util.List;
 import java.util.Map;
@@ -10,31 +10,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SubjectService implements IService<SubjectModel> {
+public class SubjectService implements IService<Subject> {
 
     @Autowired
     SubjectRepository repo;
 
     @Override
-    public SubjectModel addWithId(int schoolId) {
-        SubjectModel newModel = new SubjectModel();
+    public Subject addWithId(int schoolId) {
+        Subject newModel = new Subject();
         newModel.setSchoolId(schoolId);
         return repo.save(newModel);
         
     }
 
     @Override
-    public SubjectModel getOneById(int id) {
+    public Subject getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public SubjectModel getOne() {
+    public Subject getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public SubjectModel add() {
+    public Subject add() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -60,7 +60,7 @@ public class SubjectService implements IService<SubjectModel> {
     }
 
     @Override
-    public List<SubjectModel> getAll() {
+    public List<Subject> getAll() {
         return repo.findAll();
     }
 

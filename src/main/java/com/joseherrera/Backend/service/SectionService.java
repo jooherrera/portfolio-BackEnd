@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.SectionTitleModel;
+import com.joseherrera.Backend.model.Section;
 import com.joseherrera.Backend.repository.SectionRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SectionService implements IService<SectionTitleModel> {
+public class SectionService implements IService<Section> {
 
     @Autowired
     SectionRepository repo;
     
     @Override
-    public SectionTitleModel getOneById(int id){
+    public Section getOneById(int id){
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public SectionTitleModel getOne() {
+    public Section getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public SectionTitleModel add() {
+    public Section add() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -41,7 +41,7 @@ public class SectionService implements IService<SectionTitleModel> {
     }
 
     @Override
-    public SectionTitleModel addWithId(int id) {
+    public Section addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -51,7 +51,7 @@ public class SectionService implements IService<SectionTitleModel> {
     }
 
     @Override
-    public List<SectionTitleModel> getAll() {
+    public List<Section> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

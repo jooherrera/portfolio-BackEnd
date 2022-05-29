@@ -3,8 +3,8 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.SchoolModel;
-import com.joseherrera.Backend.model.SubjectModel;
+import com.joseherrera.Backend.model.School;
+import com.joseherrera.Backend.model.Subject;
 import com.joseherrera.Backend.service.SubjectService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
@@ -44,19 +44,19 @@ public class SubjectController {
     SubjectService subjectService;
 
     @Autowired
-    IService<SchoolModel> schoolService;
+    IService<School> schoolService;
 
     @Autowired
     Response response;
 
     @GetMapping("/")
     @ResponseBody
-    public List<SubjectModel> get(@PathVariable Optional<Integer> schoolId) {
+    public List<Subject> get(@PathVariable Optional<Integer> schoolId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @PostMapping("/")
-    public SubjectModel add(@PathVariable Optional<Integer> schoolId) throws Exception {
+    public Subject add(@PathVariable Optional<Integer> schoolId) throws Exception {
         if (schoolId.isEmpty()) {
             throw new Exception("No se encontro un ID para agregar");
         }
@@ -75,7 +75,7 @@ public class SubjectController {
 
             subjectService.update(id, field);
 
-            SubjectModel updatedModel = subjectService.getOneById(id);
+            Subject updatedModel = subjectService.getOneById(id);
 
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {

@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.SkillModel;
+import com.joseherrera.Backend.model.Skill;
 import com.joseherrera.Backend.repository.SkillRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,24 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SkillService implements IService<SkillModel> {
+public class SkillService implements IService<Skill> {
 
     @Autowired
     SkillRepository repo;
 
     @Override
-    public SkillModel getOneById(int id) {
+    public Skill getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public SkillModel getOne() {
+    public Skill getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public SkillModel add() {
-        return repo.save(new SkillModel());
+    public Skill add() {
+        return repo.save(new Skill());
     }
 
     @Override
@@ -44,7 +44,7 @@ public class SkillService implements IService<SkillModel> {
     }
 
     @Override
-    public SkillModel addWithId(int id) {
+    public Skill addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -54,7 +54,7 @@ public class SkillService implements IService<SkillModel> {
     }
 
     @Override
-    public List<SkillModel> getAll() {
+    public List<Skill> getAll() {
         return repo.findAll();
     }
 

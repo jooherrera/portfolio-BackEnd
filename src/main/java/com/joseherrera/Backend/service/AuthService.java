@@ -3,7 +3,7 @@ package com.joseherrera.Backend.service;
 import com.joseherrera.Backend.dto.LoginRequestDto;
 import com.joseherrera.Backend.exception.LoginException;
 import com.joseherrera.Backend.interfaces.IAuthService;
-import com.joseherrera.Backend.model.AuthModel;
+import com.joseherrera.Backend.model.Auth;
 import com.joseherrera.Backend.repository.AuthRepository;
 import com.joseherrera.Backend.utils.Encrypt;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public class AuthService implements IAuthService {
     @Override
     public void changePassword(String email, String newPassword) {
 
-        AuthModel found = authRepo.findByEmail(email).orElse(null);
+        Auth found = authRepo.findByEmail(email).orElse(null);
 
         found.setPassword(encrypter.encryptPassword(newPassword));
 
@@ -30,13 +30,13 @@ public class AuthService implements IAuthService {
     }
 
     @Override
-    public AuthModel findAuth(LoginRequestDto loginRequest) throws LoginException {
+    public Auth findAuth(LoginRequestDto loginRequest) throws LoginException {
 
         try {
             String email = loginRequest.getEmail();
             String password = loginRequest.getPassword();
 
-            AuthModel authFound = authRepo.findByEmail(email).orElse(null);
+            Auth authFound = authRepo.findByEmail(email).orElse(null);
 
             if (Objects.isNull(authFound)) {
                 throw new LoginException("Email o contraseña incorrecto");

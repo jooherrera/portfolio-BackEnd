@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.InstitutionModel;
+import com.joseherrera.Backend.model.Institution;
 import com.joseherrera.Backend.repository.InstitutionRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,30 +9,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InstitutionService implements IService<InstitutionModel> {
+public class InstitutionService implements IService<Institution> {
 
     @Autowired
     InstitutionRepository repo;
 
     @Override
-    public InstitutionModel getOneById(int id) {
+    public Institution getOneById(int id) {
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public InstitutionModel addWithId(int id) {
+    public Institution addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 
     @Override
-    public InstitutionModel getOne() {
+    public Institution getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public InstitutionModel add() {
-        return repo.save(new InstitutionModel());
+    public Institution add() {
+        return repo.save(new Institution());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class InstitutionService implements IService<InstitutionModel> {
     }
 
     @Override
-    public List<InstitutionModel> getAll() {
+    public List<Institution> getAll() {
         return repo.findAll();
     }
 

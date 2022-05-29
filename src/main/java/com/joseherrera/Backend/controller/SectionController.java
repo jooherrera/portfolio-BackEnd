@@ -3,7 +3,7 @@ package com.joseherrera.Backend.controller;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.SectionNames;
-import com.joseherrera.Backend.model.SectionTitleModel;
+import com.joseherrera.Backend.model.Section;
 import com.joseherrera.Backend.service.SectionService;
 import com.joseherrera.Backend.utils.JwToken;
 import com.joseherrera.Backend.utils.Response;
@@ -39,10 +39,10 @@ public class SectionController {
     Response response;
 
     @GetMapping("/{sectionName}")
-    public ResponseEntity<SectionTitleModel> get(@PathVariable String sectionName) {
+    public ResponseEntity<Section> get(@PathVariable String sectionName) {
 
         try {
-            SectionTitleModel sectionInfo;
+            Section sectionInfo;
             switch (sectionName) {
                 case "about":
                     sectionInfo = service.getOneById(SectionNames.ABOUT.ordinal() + 1);
@@ -87,7 +87,7 @@ public class SectionController {
                 throw new WrongTokenException("No estas autorizado a modificar");
             }
 
-            SectionTitleModel modelUpdated ;
+            Section modelUpdated ;
             
             switch (sectionName) {
                 case "about":

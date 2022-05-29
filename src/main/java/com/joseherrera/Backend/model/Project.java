@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,14 +16,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "Technology")
-public class TechnologyModel implements Serializable {
+@Table(name = "Project")
+public class Project implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Lob
-    private String logo = "";
-    private String name = "name";
+    private String name = "Project name";
+    private String description = "Description";
+    private String githubLink = "Github Link";
+    private String webLink = "Web link";
 
 }

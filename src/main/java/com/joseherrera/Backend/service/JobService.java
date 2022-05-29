@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.JobModel;
+import com.joseherrera.Backend.model.Job;
 import com.joseherrera.Backend.repository.JobRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,29 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JobService implements IService<JobModel> {
+public class JobService implements IService<Job> {
 
     @Autowired
     JobRepository repo;
     
     @Override
-    public JobModel getOneById(int id){
+    public Job getOneById(int id){
         return repo.findById(id).orElse(null);
     }
 
     @Override
-    public JobModel addWithId(int id) {
+    public Job addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public JobModel getOne() {
+    public Job getOne() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public JobModel add() {
-        return repo.save(new JobModel());
+    public Job add() {
+        return repo.save(new Job());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class JobService implements IService<JobModel> {
     }
 
     @Override
-    public List<JobModel> getAll() {
+    public List<Job> getAll() {
         return repo.findAll();
     }
 

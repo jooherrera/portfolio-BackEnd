@@ -4,7 +4,7 @@ import com.joseherrera.Backend.dto.SubjectItemDto;
 import com.joseherrera.Backend.dto.SchoolDto;
 import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IJwToken;
-import com.joseherrera.Backend.model.SchoolModel;
+import com.joseherrera.Backend.model.School;
 import com.joseherrera.Backend.service.SchoolService;
 import com.joseherrera.Backend.service.SubjectService;
 import com.joseherrera.Backend.utils.JwToken;
@@ -53,10 +53,10 @@ public class SchoolController {
     @ResponseBody
     public List<SchoolDto> getAll() {
         
-        List<SchoolModel> listSchool = service.getAll();
+        List<School> listSchool = service.getAll();
         List<SchoolDto> listDto = new ArrayList<>();
         
-        for(SchoolModel school : listSchool) {
+        for(School school : listSchool) {
             List<SubjectItemDto> items = Subjectservice.getAllBySchoolId(school.getId());
             SchoolDto newDto = new SchoolDto(school.getId(), school.getCompany(), school.getLogo(), items);
             listDto.add(newDto);
@@ -76,7 +76,7 @@ public class SchoolController {
 
             service.update(id, field);
 
-            SchoolModel updatedModel = service.getOneById(id);
+            School updatedModel = service.getOneById(id);
             
             return new ResponseEntity<>(updatedModel, HttpStatus.ACCEPTED);
         } catch (AssertionError e) {
@@ -93,7 +93,7 @@ public class SchoolController {
     
 
     @PostMapping("/")
-    public SchoolModel add(@PathVariable(required = false) Optional<Integer> id) {
+    public School add(@PathVariable(required = false) Optional<Integer> id) {
         return service.add();
     }
 

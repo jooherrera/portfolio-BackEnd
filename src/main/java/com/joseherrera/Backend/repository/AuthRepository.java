@@ -1,13 +1,13 @@
 package com.joseherrera.Backend.repository;
 
-import com.joseherrera.Backend.model.AuthModel;
+import com.joseherrera.Backend.model.Auth;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AuthRepository extends JpaRepository<AuthModel, Integer> {
+public interface AuthRepository extends JpaRepository<Auth, Integer> {
 
-    Optional<AuthModel> findByEmail(String email);
+    Optional<Auth> findByEmail(String email);
 
 }

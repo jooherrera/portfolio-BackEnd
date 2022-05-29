@@ -1,7 +1,7 @@
 package com.joseherrera.Backend.service;
 
 import com.joseherrera.Backend.interfaces.IService;
-import com.joseherrera.Backend.model.ContactModel;
+import com.joseherrera.Backend.model.Contact;
 import com.joseherrera.Backend.repository.ContactRepository;
 import java.util.List;
 import java.util.Map;
@@ -9,29 +9,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ContactService implements IService<ContactModel> {
+public class ContactService implements IService<Contact> {
 
     @Autowired
     ContactRepository repo;
 
     @Override
-    public ContactModel getOneById(int id) {
+    public Contact getOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ContactModel addWithId(int id) {
+    public Contact addWithId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
     @Override
-    public ContactModel getOne() {
+    public Contact getOne() {
         return repo.findAll().get(0);
     }
 
     @Override
-    public ContactModel add() {
+    public Contact add() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -56,7 +56,7 @@ public class ContactService implements IService<ContactModel> {
     }
 
     @Override
-    public List<ContactModel> getAll() {
+    public List<Contact> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
