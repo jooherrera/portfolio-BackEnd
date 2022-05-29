@@ -4,7 +4,6 @@ import com.joseherrera.Backend.dto.ChangePasswordRequestDto;
 import com.joseherrera.Backend.dto.LoginRequestDto;
 
 import com.joseherrera.Backend.exception.LoginException;
-import com.joseherrera.Backend.exception.WrongTokenException;
 import com.joseherrera.Backend.interfaces.IAuthService;
 import com.joseherrera.Backend.model.AuthModel;
 import com.joseherrera.Backend.utils.JwToken;
@@ -15,13 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.joseherrera.Backend.interfaces.IJwToken;
 import com.joseherrera.Backend.interfaces.IService;
 import com.joseherrera.Backend.model.PersonModel;
-import com.joseherrera.Backend.utils.Token;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
